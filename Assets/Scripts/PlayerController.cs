@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
 
     private Rigidbody2D rb;
     private Animator animator;
+
+    private enum Direction
+    {
+        Up = 0,
+        Right = 1,
+        Down = 2,
+        Left = 3
+    }
 
     void Start()
     {
@@ -21,20 +29,30 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(horizontalInput, verticalInput);
 
-        if (movement.sqrMagnitude > 1)
+        if (movement.sqrMagnitude > 1f)
         {
             movement.Normalize();
         }
 
-        if (movement.magnitude > 0)
+        rb.velocity = movement * moveSpeed;
+
+        bool isMoving = movement.sqrMagnitude > Mathf.Epsilon;
+        animator.SetBool("IsMoving", isMoving);
+
+        if (isMoving)
         {
-            animator.SetBool("walk", true);
+            animator.SetInteger("Direction", GetDirection(movement));
         }
-        else
+    }
+
+    private int GetDirection(Vector2 movement)
+    {
+        // Prefer the dominant axis to determine facing direction
+        if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
         {
-            animator.SetBool("walk", false);
+            return movement.x > 0f ? (int)Direction.Right : (int)Direction.Left;
         }
 
-        rb.velocity = movement * moveSpeed;
+        return movement.y > 0f ? (int)Direction.Up : (int)Direction.Down;
     }
 }
