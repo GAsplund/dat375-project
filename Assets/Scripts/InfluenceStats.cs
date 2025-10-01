@@ -6,27 +6,34 @@ using System;
 public class InfluenceStats : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private float currentValue = 0.5f;
-    [SerializeField] private float maxValue = 1f;
+    [SerializeField] private int currentValue = 50;
+    [SerializeField] private int maxValue = 100;
 
-    public static event Action<float, float> OnValueChange;
+    public static event Action<int, int> OnValueChange;
 
-    public float MaxValue => maxValue;
-    public float CurrentValue => currentValue;
+    public int MaxValue => maxValue;
+    public int CurrentValue => currentValue;
+
+    public enum InfluenceDirection
+    {
+        Left = -1,
+        Right = 1
+    }
 
     void Start()
     {
         OnValueChange?.Invoke(currentValue, maxValue);
     }
 
-    public void ModifyValue(float amount)
+    /// <summary>
+    /// Add influence to the current value based on the direction.
+    /// </summary>
+    /// <param name="addInfluence">The amount of influence points to add, must be a value between 0-100, representing total percentage-point change.</param>
+    /// <param name="direction">The direction to adjust influence direction in.</param>
+    public void AddInfluence(int addInfluence, InfluenceDirection direction)
     {
-        // Calculate the new value, clamped between 0 and max value.
-        currentValue = Mathf.Clamp(currentValue + amount, 0f, maxValue);
-
-        // Notify all subscribed listeners (e.g., the HealthBarUI script) about the change.
+        currentValue += addInfluence * (int)direction;
+        currentValue = Math.Clamp(currentValue, 0, maxValue);
         OnValueChange?.Invoke(currentValue, maxValue);
-
-        Debug.Log($"Influence: Value changed to {currentValue}. Notifying UI.");
     }
 }

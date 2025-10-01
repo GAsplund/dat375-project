@@ -49,11 +49,11 @@ public class PlayerController : MonoBehaviour
 
             if (direction == Direction.Up)
             {
-                influenceStats.ModifyValue(0.01f);
+                influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Right);
             }
             else if (direction == Direction.Down)
             {
-                influenceStats.ModifyValue(-0.01f);
+                influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Left);
             }
         }
     }

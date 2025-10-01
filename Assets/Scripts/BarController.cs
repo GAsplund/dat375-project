@@ -49,7 +49,7 @@ public class InfluenceBar : MonoBehaviour
         InfluenceStats.OnValueChange -= UpdateBar;
     }
 
-    private void UpdateBar(float current, float max)
+    private void UpdateBar(int current, int max)
     {
         if (influenceSlider != null)
         {
