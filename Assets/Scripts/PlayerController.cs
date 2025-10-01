@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private InfluenceStats influenceStats;
 
     private enum Direction
     {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        influenceStats = FindObjectOfType<InfluenceStats>();
     }
 
     void FixedUpdate()
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
         if (isMoving)
         {
             animator.SetInteger("Direction", GetDirection(movement));
+            influenceStats?.ModifyValue(-0.01f * Time.fixedDeltaTime);
         }
     }
 
