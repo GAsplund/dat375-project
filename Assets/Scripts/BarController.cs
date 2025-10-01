@@ -9,7 +9,6 @@ public class InfluenceBar : MonoBehaviour
     [Tooltip("Reference to the Unity UI Slider component.")]
     [SerializeField] private Slider influenceSlider;
 
-    // Automatically finds the Slider if it hasn't been assigned in the Inspector.
     void Awake()
     {
         if (influenceSlider == null)
@@ -24,21 +23,14 @@ public class InfluenceBar : MonoBehaviour
 
     void OnEnable()
     {
-        // IMPORTANT: Subscribe to the data source event when this component becomes active.
         InfluenceStats.OnValueChange += UpdateBar;
     }
 
     void OnDisable()
     {
-        // CRITICAL: Unsubscribe when the component is disabled to prevent memory leaks!
         InfluenceStats.OnValueChange -= UpdateBar;
     }
 
-    /// <summary>
-    /// This method is the event handler. It executes every time PlayerStats.OnValueChange fires.
-    /// </summary>
-    /// <param name="current">The new current value from InfluenceStats.</param>
-    /// <param name="max">The max value from InfluenceStats.</param>
     private void UpdateBar(float current, float max)
     {
         if (influenceSlider != null)

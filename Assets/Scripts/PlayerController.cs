@@ -44,19 +44,28 @@ public class PlayerController : MonoBehaviour
 
         if (isMoving)
         {
-            animator.SetInteger("Direction", GetDirection(movement));
-            influenceStats?.ModifyValue(-0.01f * Time.fixedDeltaTime);
+            Direction direction = GetDirection(movement);
+            animator.SetInteger("Direction", (int)direction);
+
+            if (direction == Direction.Up)
+            {
+                influenceStats.ModifyValue(0.01f);
+            }
+            else if (direction == Direction.Down)
+            {
+                influenceStats.ModifyValue(-0.01f);
+            }
         }
     }
 
-    private int GetDirection(Vector2 movement)
+    private Direction GetDirection(Vector2 movement)
     {
         // Prefer the dominant axis to determine facing direction
         if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
         {
-            return movement.x > 0f ? (int)Direction.Right : (int)Direction.Left;
+            return movement.x > 0f ? Direction.Right : Direction.Left;
         }
 
-        return movement.y > 0f ? (int)Direction.Up : (int)Direction.Down;
+        return movement.y > 0f ? Direction.Up : Direction.Down;
     }
 }
