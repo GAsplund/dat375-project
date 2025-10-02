@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This class is responsible for controlling the money counter in the game.
+/// This class is responsible for controlling the money counter UI in the game.
 /// It handles the display and receives updates to the player's money.
 /// </summary>
 public class MoneyCounterController : MonoBehaviour

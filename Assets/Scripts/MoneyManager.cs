@@ -5,7 +5,7 @@ using System;
 
 /// <summary>
 /// This class is responsible for controlling the money counter in the game.
-/// It handles the display and receives updates to the player's money.
+/// It acts as a singleton and provides methods to add or subtract money.
 /// </summary>
 public class MoneyManager : MonoBehaviour
 {
