@@ -1,39 +1,41 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class InteractableObject : MonoBehaviour
 {
-    public string sceneToLoad = "SampleScene";
+    public string sceneToLoad = "WashScene";
+    public float interactionDistance = 1.5f;
     public KeyCode interactKey = KeyCode.E;
 
-    private bool isNear = false;
+    public TextMeshProUGUI interactText;
+
+    private Transform player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        interactText.enabled = false;
+    }
 
     void Update()
     {
-        // If player is in trigger
-        if (isNear && Input.GetKeyDown(interactKey))
+        if (player == null) return;
+
+        float distance = Vector2.Distance(player.position, transform.position);
+
+        if (distance <= interactionDistance)
         {
-            SceneManager.LoadScene(sceneToLoad);
+            interactText.enabled = true;
+
+            if (Input.GetKeyDown(interactKey))
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            }
+        }
+        else
+        {
+            interactText.enabled = false;
         }
     }
-
-    //Get notified if you are in trigger in the console to test
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player entered trigger");
-            isNear = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player exited trigger");
-            isNear = false;
-        }
-    }
-
 }
