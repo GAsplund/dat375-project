@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 1025029039}
   - component: {fileID: 1025029038}
   - component: {fileID: 1025029037}
+  - component: {fileID: 1025029041}
   m_Layer: 0
   m_Name: Job 2
   m_TagString: Untagged
@@ -317,6 +318,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1025029041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025029036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c715120c6e37814c888433233fdc645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1135567593
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +496,7 @@ GameObject:
   - component: {fileID: 1809386040}
   - component: {fileID: 1809386039}
   - component: {fileID: 1809386038}
+  - component: {fileID: 1809386042}
   m_Layer: 0
   m_Name: Job 1
   m_TagString: Untagged
@@ -616,6 +630,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1809386042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809386037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c715120c6e37814c888433233fdc645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1839345903
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +710,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1863323257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863323259}
+  - component: {fileID: 1863323258}
+  m_Layer: 0
+  m_Name: JobGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1863323258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863323257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c557af234d8ec46ae832e2ec523eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gangs:
+  - The Cowboy Hats
+  - The Banditos
+  minQuantity: 1
+  maxQuantity: 3
+  clothingRewards:
+  - type: 0
+    minReward: 1
+    maxReward: 5
+  - type: 1
+    minReward: 2
+    maxReward: 8
+  - type: 2
+    minReward: 5
+    maxReward: 10
+  populateOnStart: 1
+  jobsToGenerate: 10
+--- !u!4 &1863323259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863323257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8502811, y: 2.6036391, z: -9.928784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1959129685
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +783,7 @@ GameObject:
   - component: {fileID: 1959129688}
   - component: {fileID: 1959129687}
   - component: {fileID: 1959129686}
+  - component: {fileID: 1959129690}
   m_Layer: 0
   m_Name: Job 3
   m_TagString: Untagged
@@ -829,6 +917,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1959129690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959129685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c715120c6e37814c888433233fdc645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -839,3 +939,4 @@ SceneRoots:
   - {fileID: 1959129689}
   - {fileID: 1839345906}
   - {fileID: 999892896}
+  - {fileID: 1863323259}
