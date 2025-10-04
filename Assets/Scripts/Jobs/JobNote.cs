@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.PlayerLoop;
+using UnityEngine.EventSystems;
 
-public class JobNote : MonoBehaviour
+public class JobNote : MonoBehaviour, IPointerClickHandler
 {
-    public Job job { get; set; }
+    public Job job; // Job is assigned at runtime by JobGenerator
 
+    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    {
+        JobDetailsModal.Instance.Show(job);
+    }
 }
