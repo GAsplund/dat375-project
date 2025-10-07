@@ -70,8 +70,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayWalkingSound()
     {
-        AudioClip randomClip = walkSounds[UnityEngine.Random.Range(0, walkSounds.Length)];
-        AudioManager.instance.PlayOneShot(randomClip, transform, 0.5f);
+        AudioManager.instance.PlayRandomOneShotEffect(walkSounds, transform, 0.5f);
     }
 
     private Direction GetDirection(Vector2 movement)
