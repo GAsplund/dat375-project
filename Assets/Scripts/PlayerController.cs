@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
                 influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Left);
             }
 
-            if (!IsInvoking("PlayWalkingSound"))
+            if (!IsInvoking(nameof(PlayWalkingSound)))
             {
                 InvokeRepeating(nameof(PlayWalkingSound), 0f, 0.4f);
             }
