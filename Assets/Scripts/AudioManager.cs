@@ -5,7 +5,6 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Header("Audio Sources")]
-    [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource effectSource;
 
     private void Awake()
