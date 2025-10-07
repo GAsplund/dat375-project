@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private InfluenceStats influenceStats;
 
     private enum Direction
     {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        influenceStats = FindObjectOfType<InfluenceStats>();
     }
 
     void FixedUpdate()
@@ -41,18 +44,28 @@ public class PlayerController : MonoBehaviour
 
         if (isMoving)
         {
-            animator.SetInteger("Direction", GetDirection(movement));
+            Direction direction = GetDirection(movement);
+            animator.SetInteger("Direction", (int)direction);
+
+            if (direction == Direction.Up)
+            {
+                influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Right);
+            }
+            else if (direction == Direction.Down)
+            {
+                influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Left);
+            }
         }
     }
 
-    private int GetDirection(Vector2 movement)
+    private Direction GetDirection(Vector2 movement)
     {
         // Prefer the dominant axis to determine facing direction
         if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
         {
-            return movement.x > 0f ? (int)Direction.Right : (int)Direction.Left;
+            return movement.x > 0f ? Direction.Right : Direction.Left;
         }
 
-        return movement.y > 0f ? (int)Direction.Up : (int)Direction.Down;
+        return movement.y > 0f ? Direction.Up : Direction.Down;
     }
 }
