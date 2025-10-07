@@ -4,6 +4,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private AudioClip[] walkSounds;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -55,7 +56,21 @@ public class PlayerController : MonoBehaviour
             {
                 influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Left);
             }
+
+            if (!IsInvoking(nameof(PlayWalkingSound)))
+            {
+                InvokeRepeating(nameof(PlayWalkingSound), 0f, 0.4f);
+            }
         }
+        else
+        {
+            CancelInvoke(nameof(PlayWalkingSound));
+        }
+    }
+
+    void PlayWalkingSound()
+    {
+        AudioManager.instance.PlayRandomOneShotEffect(walkSounds, transform, 0.5f);
     }
 
     private Direction GetDirection(Vector2 movement)
