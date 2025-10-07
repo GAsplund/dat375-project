@@ -18,11 +18,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShotEffect(AudioClip clip, Transform sourceTransform, float volume = 1f)
     {
-        AudioSource source = Instantiate(effectSource, sourceTransform.position, Quaternion.identity);
-        source.clip = clip;
-        source.volume = volume;
-        source.Play();
-        Destroy(source.gameObject, source.clip.length);
+        if (clip == null) return;
+        effectSource.PlayOneShot(clip, volume);
     }
 
     public void PlayRandomOneShotEffect(AudioClip[] clips, Transform sourceTransform, float volume = 1f)
