@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Singleton AudioManager to handle playing sound effects
+/// Must not be instantiated more than once per scene
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -20,7 +24,7 @@ public class AudioManager : MonoBehaviour
         source.Play();
         Destroy(source.gameObject, source.clip.length);
     }
-    
+
     public void PlayRandomOneShotEffect(AudioClip[] clips, Transform sourceTransform, float volume = 1f)
     {
         if (clips.Length == 0) return;
