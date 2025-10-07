@@ -2455,7 +2455,7 @@ AudioSource:
   m_GameObject: {fileID: 652605745}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5995222467103064734, guid: 86d4254b6c3ac6b47b71fa3e57062830, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2808,7 +2808,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2343953266448464441, guid: 86d4254b6c3ac6b47b71fa3e57062830, type: 2}
-  m_audioClip: {fileID: 8300000, guid: c615c53217f1cec4fbe560b11770ab03, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 18f22628c7340a3479ec776c766abd68, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2995,6 +2995,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  walkSounds:
+  - {fileID: 8300000, guid: 58ba2ca37233b394b8e474f178511f44, type: 3}
+  - {fileID: 8300000, guid: 04468f6aebb46e3499ed3bc39379bb23, type: 3}
+  - {fileID: 8300000, guid: 6d9759e0815ad2d43af9906deda47c33, type: 3}
+  - {fileID: 8300000, guid: 8c640c03fefe2034e87586262fcf1142, type: 3}
 --- !u!95 &1515720375
 Animator:
   serializedVersion: 5
