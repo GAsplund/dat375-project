@@ -41,6 +41,14 @@ public class JobGenerator : MonoBehaviour
     [SerializeAs("Min Distance Between Notes")]
     [SerializeField] private float minDistanceBetweenNotes = 0.5f;
 
+    [Header("Spawn Area Settings")]
+    [Tooltip("If true, uses a custom spawn area instead of the entire screen.")]
+    [SerializeField] private bool useCustomSpawnArea = false;
+    [Tooltip("The minimum bounds of the spawn area (bottom-left corner in world coordinates).")]
+    [SerializeField] private Vector2 spawnAreaMin = new Vector2(-5f, -5f);
+    [Tooltip("The maximum bounds of the spawn area (top-right corner in world coordinates).")]
+    [SerializeField] private Vector2 spawnAreaMax = new Vector2(5f, 5f);
+
     private List<Vector3> occupiedPositions = new List<Vector3>();
     private Vector2 noteSize;
 
@@ -118,15 +126,27 @@ public class JobGenerator : MonoBehaviour
 
     private Vector3? GetNonOverlappingPosition()
     {
-        var camera = Camera.main;
-        if (camera == null)
-        {
-            throw new System.NotSupportedException("Main Camera not found in the scene.");
-        }
+        Vector3 bottomLeft, topRight;
 
-        float screenZ = Mathf.Abs(camera.transform.position.z);
-        Vector3 bottomLeft = camera.ScreenToWorldPoint(new Vector3(0, 0, screenZ));
-        Vector3 topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, screenZ));
+        if (useCustomSpawnArea)
+        {
+            // Use custom spawn area with min/max bounds
+            bottomLeft = new Vector3(spawnAreaMin.x, spawnAreaMin.y, 0);
+            topRight = new Vector3(spawnAreaMax.x, spawnAreaMax.y, 0);
+        }
+        else
+        {
+            // Use entire screen (original behavior)
+            var camera = Camera.main;
+            if (camera == null)
+            {
+                throw new System.NotSupportedException("Main Camera not found in the scene.");
+            }
+
+            float screenZ = Mathf.Abs(camera.transform.position.z);
+            bottomLeft = camera.ScreenToWorldPoint(new Vector3(0, 0, screenZ));
+            topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, screenZ));
+        }
 
         for (int attempt = 0; attempt < maxPlacementAttempts; attempt++)
         {
@@ -157,5 +177,29 @@ public class JobGenerator : MonoBehaviour
         }
 
         return true;
+    }
+
+    // Draw the spawn area in the Unity Editor for visualization
+    private void OnDrawGizmosSelected()
+    {
+        if (useCustomSpawnArea)
+        {
+            Vector3 center = new Vector3(
+                (spawnAreaMin.x + spawnAreaMax.x) / 2,
+                (spawnAreaMin.y + spawnAreaMax.y) / 2,
+                0
+            );
+            Vector3 size = new Vector3(
+                spawnAreaMax.x - spawnAreaMin.x,
+                spawnAreaMax.y - spawnAreaMin.y,
+                0.1f
+            );
+
+            Gizmos.color = new Color(0, 1, 0, 0.3f); // Semi-transparent green
+            Gizmos.DrawCube(center, size);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(center, size);
+        }
     }
 }
