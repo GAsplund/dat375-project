@@ -158,3 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c715120c6e37814c888433233fdc645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  job:
+    forGang: 
+    jobType: 0
+    reward: 0
+    clothes: 
