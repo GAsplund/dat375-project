@@ -5,11 +5,10 @@ using System.Collections;
 
 public class WashClothes : MonoBehaviour
 {
-    public GameObject dirtLayer;
-    private SpriteRenderer dirtRenderer;
+    public GameObject[] dirtLayers; 
+    private SpriteRenderer[] dirtRenderers;
 
-
-    public string sceneToLoad = "MainScene";
+    public string sceneToLoad = "InteractionScene";
 
     public TextMeshProUGUI approvedText;
 
@@ -17,8 +16,13 @@ public class WashClothes : MonoBehaviour
 
     void Start()
     {
-        if (dirtLayer != null)
-            dirtRenderer = dirtLayer.GetComponent<SpriteRenderer>();
+        // Get sprite renderer 
+        dirtRenderers = new SpriteRenderer[dirtLayers.Length];
+        for (int i = 0; i < dirtLayers.Length; i++)
+        {
+            if (dirtLayers[i] != null)
+                dirtRenderers[i] = dirtLayers[i].GetComponent<SpriteRenderer>();
+        }
 
         if (approvedText != null)
             approvedText.enabled = false;
@@ -26,21 +30,41 @@ public class WashClothes : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Brush") && dirtRenderer != null && !isApproved)
+        // Endast om borsten nuddar
+        if (other.CompareTag("Brush") && !isApproved)
         {
-            Color c = dirtRenderer.color;
+            // Get which object it touches
+            foreach (var dirtRenderer in dirtRenderers)
+            {
+                if (dirtRenderer == null) continue;
 
-            // Reduce alpha with 10%, opcaity
-            c.a -= 0.1f;
-            c.a = Mathf.Clamp01(c.a);
-            dirtRenderer.color = c;
+                // Soap touches blood object
+                Collider2D dirtCollider = dirtRenderer.GetComponent<Collider2D>();
+                if (dirtCollider != null && other.IsTouching(dirtCollider))
+                {
+                    Color c = dirtRenderer.color;
+                    c.a -= 0.1f; // reduce opcaity
+                    c.a = Mathf.Clamp01(c.a);
+                    dirtRenderer.color = c;
+                }
+            }
 
-            //change scene when opacity reaches 0
-            if (c.a <= 0f)
+            // All object cleaned -> change scene
+            if (AllDirtClean())
             {
                 StartCoroutine(ShowApprovedAndChangeScene());
             }
         }
+    }
+
+    bool AllDirtClean()
+    {
+        foreach (var dirtRenderer in dirtRenderers)
+        {
+            if (dirtRenderer != null && dirtRenderer.color.a > 0f)
+                return false; // at least one dirt/blood object left
+        }
+        return true; //cleaned
     }
 
     IEnumerator ShowApprovedAndChangeScene()
@@ -53,13 +77,16 @@ public class WashClothes : MonoBehaviour
             approvedText.text = "Job Done!";
         }
 
-        // Wait 2 seconds
         yield return new WaitForSeconds(2f);
 
-        // Remove dirt object
-        if (dirtLayer != null)
-            dirtLayer.SetActive(false);
+        // Delete all blood
+        foreach (var dirt in dirtLayers)
+        {
+            if (dirt != null)
+                dirt.SetActive(false);
+        }
 
         SceneManager.LoadScene(sceneToLoad);
     }
 }
+
