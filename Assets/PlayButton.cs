@@ -24,9 +24,11 @@ public class PlayButton : MonoBehaviour
         ButtonDown.enabled = false;
     }
 
-    private void OnMouseDown()
+   
+
+    private void OnMouseUp()
     {
-        SceneManager.LoadScene(GameScene.name);
+         SceneManager.LoadScene(GameScene.name);
     }
     private void Start()
     {
