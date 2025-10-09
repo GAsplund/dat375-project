@@ -28,8 +28,4 @@ public class PlayButton : MonoBehaviour
     {
         SceneManager.LoadScene(GameScene.name);
     }
-    private void Start()
-    {
-        
-    }
 }
