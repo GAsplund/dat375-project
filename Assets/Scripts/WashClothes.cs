@@ -5,18 +5,20 @@ using System.Collections;
 
 public class WashClothes : MonoBehaviour
 {
-    public GameObject[] dirtLayers; 
+    public GameObject[] dirtLayers;
     private SpriteRenderer[] dirtRenderers;
 
     public string sceneToLoad = "InteractionScene";
-
     public TextMeshProUGUI approvedText;
 
     private bool isApproved = false;
 
+    public ParticleSystem bubbleSystemPrefab; 
+    public float bubbleLifetime = 0.5f;  
+
     void Start()
     {
-        // Get sprite renderer 
+        // Get SpriteRender from blood
         dirtRenderers = new SpriteRenderer[dirtLayers.Length];
         for (int i = 0; i < dirtLayers.Length; i++)
         {
@@ -30,26 +32,28 @@ public class WashClothes : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Endast om borsten nuddar
         if (other.CompareTag("Brush") && !isApproved)
         {
-            // Get which object it touches
             foreach (var dirtRenderer in dirtRenderers)
             {
                 if (dirtRenderer == null) continue;
 
-                // Soap touches blood object
                 Collider2D dirtCollider = dirtRenderer.GetComponent<Collider2D>();
                 if (dirtCollider != null && other.IsTouching(dirtCollider))
                 {
+                    // Opacity
                     Color c = dirtRenderer.color;
-                    c.a -= 0.1f; // reduce opcaity
+                    c.a -= 0.1f;
                     c.a = Mathf.Clamp01(c.a);
                     dirtRenderer.color = c;
+
+                    //Create bubbles
+                    Vector3 spawnPos = dirtRenderer.transform.position;
+                    spawnPos += (Vector3)(Random.insideUnitCircle * 0.2f); // around the blood 
+                    SpawnBubbleEffect(spawnPos);
                 }
             }
 
-            // All object cleaned -> change scene
             if (AllDirtClean())
             {
                 StartCoroutine(ShowApprovedAndChangeScene());
@@ -57,14 +61,26 @@ public class WashClothes : MonoBehaviour
         }
     }
 
+    void SpawnBubbleEffect(Vector3 position)
+    {
+        if (bubbleSystemPrefab == null) return;
+
+        // Create bubbles
+        ParticleSystem bubbleEffect = Instantiate(bubbleSystemPrefab, position, Quaternion.identity);
+        bubbleEffect.Play();
+
+        // Destroy bubbles
+        Destroy(bubbleEffect.gameObject, bubbleLifetime);
+    }
+
     bool AllDirtClean()
     {
         foreach (var dirtRenderer in dirtRenderers)
         {
             if (dirtRenderer != null && dirtRenderer.color.a > 0f)
-                return false; // at least one dirt/blood object left
+                return false; // Blood not gone
         }
-        return true; //cleaned
+        return true; // Blood cleaned
     }
 
     IEnumerator ShowApprovedAndChangeScene()
@@ -79,7 +95,6 @@ public class WashClothes : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        // Delete all blood
         foreach (var dirt in dirtLayers)
         {
             if (dirt != null)
