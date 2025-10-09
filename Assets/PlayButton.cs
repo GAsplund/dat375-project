@@ -14,7 +14,7 @@ public class PlayButton : MonoBehaviour
    
     private void OnMouseEnter()
     {
-        ButtonUp.enabled = false;
+      ButtonUp.enabled = false;
        ButtonDown.enabled = true;
     }
 
