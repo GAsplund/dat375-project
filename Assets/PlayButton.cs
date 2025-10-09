@@ -11,20 +11,34 @@ public class PlayButton : MonoBehaviour
     public SpriteRenderer ButtonDown;
 
     public SceneAsset GameScene;
-   
+
+    //private void OnMouseEnter()
+    //{
+    //  ButtonUp.enabled = false;
+    //   ButtonDown.enabled = true;
+    //}
+
+    //private void OnMouseExit()
+    //{
+    //    ButtonUp.enabled = true;
+    //    ButtonDown.enabled = false;
+    //}
+
+
     private void OnMouseEnter()
     {
-      ButtonUp.enabled = false;
-       ButtonDown.enabled = true;
+        ButtonUp.color = new Color(0.8f, 0.8f, 0.8f);
     }
 
     private void OnMouseExit()
     {
-        ButtonUp.enabled = true;
-        ButtonDown.enabled = false;
+        ButtonUp.color = new Color(1.0f, 1.0f, 1.0f);
     }
-
-   
+    private void OnMouseDown()
+    {
+        ButtonUp.enabled = false;
+        ButtonDown.enabled = true;
+    }
 
     private void OnMouseUp()
     {
