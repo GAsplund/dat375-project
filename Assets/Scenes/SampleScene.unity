@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef87b710b6bcfbbea871fb929ff5ba92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentValue: 0.5
+  currentValue: 0
   maxValue: 1
 --- !u!4 &67432320
 Transform:
@@ -3005,6 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  walkSounds: []
 --- !u!95 &1515720375
 Animator:
   serializedVersion: 5
