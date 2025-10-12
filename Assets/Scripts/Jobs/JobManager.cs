@@ -53,6 +53,27 @@ public class JobManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Static method to mark the current job as completed and clear it.
+    /// </summary>
+    /// <remarks> This also removes the job from the stored job notes. </remarks>
+    public static void CompleteCurrentJob()
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot complete job.");
+        }
+
+        if (Instance.CurrentJob == null)
+        {
+            return; // No job to complete
+        }
+
+        Instance.jobNotesData.RemoveAll(note => note.job == Instance.CurrentJob);
+        Instance.ClearCurrentJob();
+        Debug.Log($"JobManager: Job for {Instance.CurrentJob.forGang} completed! Reward: {Instance.CurrentJob.reward} gold");
+    }
+
+    /// <summary>
     /// Static method to clear the current job.
     /// </summary>
     public static void ClearJob()
