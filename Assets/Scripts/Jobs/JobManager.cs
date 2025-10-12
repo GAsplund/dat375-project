@@ -7,7 +7,7 @@ public class JobManager : MonoBehaviour
 
     private Job CurrentJob;
     // Store serializable data for job notes so they can persist between scenes
-    private System.Collections.Generic.List<JobNoteData> jobNotesData = new System.Collections.Generic.List<JobNoteData>();
+    private List<JobNoteData> jobNotesData = new List<JobNoteData>();
 
     private void Awake()
     {
@@ -69,8 +69,15 @@ public class JobManager : MonoBehaviour
         }
 
         Instance.jobNotesData.RemoveAll(note => note.job == Instance.CurrentJob);
-        Instance.ClearCurrentJob();
         Debug.Log($"JobManager: Job for {Instance.CurrentJob.forGang} completed! Reward: {Instance.CurrentJob.reward} gold");
+        Instance.ClearCurrentJob();
+
+        // If there's a JobGenerator in the scene, notify it to replenish the board if needed
+        var generator = FindObjectOfType<JobGenerator>();
+        if (generator != null)
+        {
+            generator.ReplenishIfNeeded();
+        }
     }
 
     /// <summary>
