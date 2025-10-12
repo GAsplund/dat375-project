@@ -5,37 +5,43 @@ using TMPro;
 public class InteractableObject : MonoBehaviour
 {
     public string sceneToLoad = "WashScene";
-    public float interactionDistance = 1.5f;
     public KeyCode interactKey = KeyCode.E;
-
     public TextMeshProUGUI interactText;
 
-    private Transform player;
+    private bool playerInRange = false;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        interactText.enabled = false;
+        if (interactText != null)
+            interactText.enabled = false;
     }
 
     void Update()
     {
-        if (player == null) return;
-
-        float distance = Vector2.Distance(player.position, transform.position);
-
-        if (distance <= interactionDistance)
+        if (playerInRange && Input.GetKeyDown(interactKey))
         {
-            interactText.enabled = true;
-
-            if (Input.GetKeyDown(interactKey))
-            {
-                SceneManager.LoadScene(sceneToLoad);
-            }
+            SceneManager.LoadScene(sceneToLoad);
         }
-        else
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            interactText.enabled = false;
+            playerInRange = true;
+            if (interactText != null)
+                interactText.enabled = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            if (interactText != null)
+                interactText.enabled = false;
         }
     }
 }
+

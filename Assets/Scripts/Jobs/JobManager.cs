@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class JobManager : MonoBehaviour
 {
-    private static JobManager Instance = null;
+    private static JobManager Instance;
 
-    private Job CurrentJob = null;
+    private Job CurrentJob;
 
     private void Awake()
     {
         if (Instance != null)
         {
             Destroy(gameObject);
+            return;
         }
 
         Instance = this;
