@@ -425,8 +425,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Details text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -609,8 +609,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Title Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1245,7 +1245,8 @@ MonoBehaviour:
     minReward: 5
     maxReward: 10
   populateOnStart: 1
-  jobsToGenerate: 200
+  jobsMin: 3
+  jobsMax: 10
   JobNotePrefab: {fileID: 2498022958806553858, guid: 5884afc4a20ba1f4da57cdcf41b44f06, type: 3}
   maxPlacementAttempts: 50
   minDistanceBetweenNotes: 0

@@ -9,7 +9,7 @@ public class JobDetailsModal : MonoBehaviour
     [SerializeField] private GameObject panel; // panel root to enable/disable
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI detailsText;
-    [SerializeField] private string sceneToLoad = "CleaningScene"; // Scene to load when job is accepted
+    [SerializeField] private string sceneToLoad = "InteractionScene"; // Scene to load when job is accepted
 
     private CursorManager cursorManager;
     private Job currentJob;
