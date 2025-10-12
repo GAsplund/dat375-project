@@ -51,12 +51,26 @@ public class JobGenerator : MonoBehaviour
 
     private List<Vector3> occupiedPositions = new List<Vector3>();
     private Vector2 noteSize;
+    private List<JobNoteData> generatedNotesData = new List<JobNoteData>();
 
     public void Start()
     {
-        if (populateOnStart)
+        if (!populateOnStart)
         {
-            PopulateBoard();
+            return;
+        }
+
+        var stored = JobManager.GetGeneratedJobs();
+        if (stored != null && stored.Count > 0)
+        {
+            InstantiateFromStored(stored);
+            return;
+        }
+
+        PopulateBoard();
+        if (generatedNotesData.Count > 0)
+        {
+            JobManager.StoreGeneratedJobs(generatedNotesData);
         }
     }
 
@@ -122,6 +136,25 @@ public class JobGenerator : MonoBehaviour
         var jobNoteInstance = Instantiate(JobNotePrefab, position.Value, Quaternion.identity);
         jobNoteInstance.GetComponent<JobNote>().job = job;
         occupiedPositions.Add(position.Value);
+        generatedNotesData.Add(new JobNoteData(job, position.Value));
+    }
+
+    private void InstantiateFromStored(List<JobNoteData> stored)
+    {
+        if (JobNotePrefab == null)
+        {
+            throw new System.NotSupportedException("JobNotePrefab must be assigned in the inspector to populate the job board.");
+        }
+
+        occupiedPositions.Clear();
+        noteSize = JobNotePrefab.GetComponent<SpriteRenderer>().bounds.size;
+
+        foreach (var data in stored)
+        {
+            var jobNoteInstance = Instantiate(JobNotePrefab, data.position, Quaternion.identity);
+            jobNoteInstance.GetComponent<JobNote>().job = data.job;
+            occupiedPositions.Add(data.position);
+        }
     }
 
     private Vector3? GetNonOverlappingPosition()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class JobManager : MonoBehaviour
@@ -5,6 +6,8 @@ public class JobManager : MonoBehaviour
     private static JobManager Instance;
 
     private Job CurrentJob;
+    // Store serializable data for job notes so they can persist between scenes
+    private System.Collections.Generic.List<JobNoteData> jobNotesData = new System.Collections.Generic.List<JobNoteData>();
 
     private void Awake()
     {
@@ -71,6 +74,33 @@ public class JobManager : MonoBehaviour
         return Instance != null && Instance.CurrentJob != null;
     }
 
+    /// <summary>
+    /// Static method to get jobs that have already been generated and stored.
+    /// </summary>
+    public static System.Collections.Generic.List<JobNoteData> GetGeneratedJobs()
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot get generated jobs.");
+        }
+
+        return Instance.jobNotesData;
+    }
+
+    /// <summary>
+    /// Static method to store generated job notes.
+    /// </summary>
+    /// <param name="jobs">The job notes to store</param>
+    public static void StoreGeneratedJobs(System.Collections.Generic.List<JobNoteData> jobs)
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot store generated jobs.");
+        }
+
+        Instance.SetGeneratedJobs(jobs);
+    }
+
     // ========== Instance Methods ==========
 
     /// <summary>
@@ -90,5 +120,15 @@ public class JobManager : MonoBehaviour
     {
         CurrentJob = null;
         Debug.Log("JobManager: Current job cleared");
+    }
+
+    /// <summary>
+    /// Instance method to store generated job notes.
+    /// </summary>
+    /// <param name="jobs">The job notes to store</param>
+    private void SetGeneratedJobs(System.Collections.Generic.List<JobNoteData> jobs)
+    {
+        jobNotesData = jobs ?? new System.Collections.Generic.List<JobNoteData>();
+        Debug.Log($"JobManager: Stored {jobNotesData.Count} generated jobs");
     }
 }
