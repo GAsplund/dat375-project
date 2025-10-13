@@ -9,12 +9,11 @@ public class WashClothes : MonoBehaviour
     private SpriteRenderer[] dirtRenderers;
 
     public string sceneToLoad = "InteractionScene";
-    public TextMeshProUGUI approvedText;
 
-    private bool isApproved = false;
+    public ParticleSystem bubbleSystemPrefab;
+    public float bubbleLifetime = 0.5f;
 
-    public ParticleSystem bubbleSystemPrefab; 
-    public float bubbleLifetime = 0.5f;  
+    private LaundryManager laundryManager;
 
     void Start()
     {
@@ -26,13 +25,12 @@ public class WashClothes : MonoBehaviour
                 dirtRenderers[i] = dirtLayers[i].GetComponent<SpriteRenderer>();
         }
 
-        if (approvedText != null)
-            approvedText.enabled = false;
+        laundryManager = FindObjectOfType<LaundryManager>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Brush") && !isApproved)
+        if (other.CompareTag("Brush"))
         {
             foreach (var dirtRenderer in dirtRenderers)
             {
@@ -56,7 +54,7 @@ public class WashClothes : MonoBehaviour
 
             if (AllDirtClean())
             {
-                StartCoroutine(ShowApprovedAndChangeScene());
+                laundryManager?.OnLaundryItemCleaned();
             }
         }
     }
@@ -83,25 +81,5 @@ public class WashClothes : MonoBehaviour
         return true; // Blood cleaned
     }
 
-    IEnumerator ShowApprovedAndChangeScene()
-    {
-        isApproved = true;
-
-        if (approvedText != null)
-        {
-            approvedText.enabled = true;
-            approvedText.text = "Job Done!";
-        }
-
-        yield return new WaitForSeconds(2f);
-
-        foreach (var dirt in dirtLayers)
-        {
-            if (dirt != null)
-                dirt.SetActive(false);
-        }
-
-        SceneManager.LoadScene(sceneToLoad);
-    }
 }
 
