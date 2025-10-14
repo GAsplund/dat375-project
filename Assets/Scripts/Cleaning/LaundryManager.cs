@@ -29,6 +29,9 @@ public class LaundryManager : MonoBehaviour
     private int totalItemsToClean = 0;
     private bool jobCompleted = false;
 
+    //currentRewards is used for partly done job
+    private int currentRewards = 0;
+
     void Awake()
     {
         if (approvedText != null)
@@ -63,6 +66,8 @@ public class LaundryManager : MonoBehaviour
 
         // Advance to next item from the job
         currentItem++;
+
+        currentRewards += (int)JobManager.GetCurrentJob().reward / totalItemsToClean;
 
         if (currentItem >= totalItemsToClean)
         {
@@ -131,6 +136,29 @@ public class LaundryManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
 
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void JobPartlyDone()
+    {//When player click the partly done button
+        if (jobCompleted) return;
+        StartCoroutine(PartlyDone());
+    }
+    public IEnumerator PartlyDone()
+    {
+        jobCompleted = true;
+
+        MoneyManager.Add(currentRewards);
+        Debug.Log($"Job partly completed, rewarded {currentRewards} gold");
+
+        if (approvedText != null)
+        {
+            approvedText.enabled = true;
+            approvedText.text = $"Job partly Done!  rewarded {currentRewards} gold ";
+        }
+
+        JobManager.CompleteCurrentJob();
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneToLoad);
     }
 
