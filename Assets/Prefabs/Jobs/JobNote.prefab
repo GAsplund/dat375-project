@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3857571380132076854}
   - component: {fileID: 1998553966038416693}
   - component: {fileID: 4149145439243064866}
+  - component: {fileID: 7048087519179988757}
   m_Layer: 0
   m_Name: JobNote
   m_TagString: Untagged
@@ -146,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: ff3e8be5a8af6434ba435c627d095bfd, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6b465f800316b5b4ea483f29a9813d2c, type: 3}
-  hoverSound: {fileID: 8300000, guid: bbe46f83f43bc624396f3bdee3080b20, type: 3}
 --- !u!114 &4149145439243064866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +164,18 @@ MonoBehaviour:
     jobType: 0
     reward: 0
     clothes: 
+--- !u!114 &7048087519179988757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498022958806553858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81150d19e3a79734b802eb5713435302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseEnterSound: {fileID: 8300000, guid: bbe46f83f43bc624396f3bdee3080b20, type: 3}
+  mouseDownSound: {fileID: 0}
+  mouseUpSound: {fileID: 0}

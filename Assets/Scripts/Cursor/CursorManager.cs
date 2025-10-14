@@ -16,11 +16,6 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D clickCursorTexture;
     [SerializeField] private Vector2 clickHotSpot = Vector2.zero;
 
-    [Header("Sound Effects")]
-    [SerializeField] private AudioClip hoverSound;
-    [SerializeField] private AudioClip clickDownSound;
-    [SerializeField] private AudioClip clickUpSound;
-
     private bool isHovering = false;
 
     private enum CursorState { Default, Hover, Clicked }
@@ -65,17 +60,7 @@ public class CursorManager : MonoBehaviour
         ApplyState(desired);
     }
 
-    public static void SetHovering(bool hovering, bool playSound = true) => SetHovering(hovering, null, playSound);
-
-    public static void SetHovering(bool hovering, AudioClip customSound, bool playSound = true)
-    {
-        if (Instance == null) return;
-        
-        Instance.isHovering = hovering;
-
-        if (!playSound || !hovering) return;
-        AudioManager.instance?.PlayOneShotEffect(customSound ?? Instance.hoverSound, Instance.transform);
-    }
+    public static void SetHovering(bool hovering) => Instance.isHovering = hovering;
 
     private void ApplyState(CursorState state)
     {

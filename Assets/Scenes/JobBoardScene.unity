@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 417698186}
   - component: {fileID: 417698185}
   - component: {fileID: 417698188}
+  - component: {fileID: 417698189}
   m_Layer: 5
   m_Name: Accept Button
   m_TagString: Untagged
@@ -367,7 +368,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  hoverSound: {fileID: 0}
+--- !u!114 &417698189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417698183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81150d19e3a79734b802eb5713435302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseEnterSound: {fileID: 0}
   mouseDownSound: {fileID: 8300000, guid: 5f85555876d5df541b88c3e5e8608dac, type: 3}
   mouseUpSound: {fileID: 8300000, guid: 51a09395638867f4aaea66d1d085bdf3, type: 3}
 --- !u!1 &425308500
@@ -539,9 +552,6 @@ MonoBehaviour:
   hoverHotSpot: {x: 0, y: 0}
   clickCursorTexture: {fileID: 2800000, guid: dc5393107a06fc74abd2d35b09dd73e1, type: 3}
   clickHotSpot: {x: 0, y: 0}
-  hoverSound: {fileID: 0}
-  clickDownSound: {fileID: 0}
-  clickUpSound: {fileID: 0}
 --- !u!4 &999892896
 Transform:
   m_ObjectHideFlags: 0
@@ -960,6 +970,7 @@ GameObject:
   - component: {fileID: 1549379769}
   - component: {fileID: 1549379768}
   - component: {fileID: 1549379771}
+  - component: {fileID: 1549379772}
   m_Layer: 5
   m_Name: Declne Button
   m_TagString: Untagged
@@ -1095,7 +1106,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  hoverSound: {fileID: 0}
+--- !u!114 &1549379772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549379766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81150d19e3a79734b802eb5713435302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseEnterSound: {fileID: 0}
   mouseDownSound: {fileID: 8300000, guid: 5f85555876d5df541b88c3e5e8608dac, type: 3}
   mouseUpSound: {fileID: 8300000, guid: 51a09395638867f4aaea66d1d085bdf3, type: 3}
 --- !u!1 &1723279340

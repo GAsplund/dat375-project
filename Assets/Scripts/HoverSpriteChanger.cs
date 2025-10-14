@@ -11,9 +11,6 @@ public class HoverSpriteChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField, Tooltip("Sprite used when the pointer is hovering.")]
     private Sprite hoverSprite;
 
-    [SerializeField, Tooltip("Sound played when the pointer starts hovering over this object.")]
-    private AudioClip hoverSound;
-
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -54,7 +51,7 @@ public class HoverSpriteChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
             spriteRenderer.sprite = hoverSprite;
         }
 
-        CursorManager.SetHovering(true, hoverSound);
+        CursorManager.SetHovering(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
