@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0547ca4ec00a74b409bae1f8c32272ca
+guid: c1f877ea81ba321479f62dd0fd2d63ec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: tableCoin-sprite_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 31
+        width: 29
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f68468ec8b0e8418fbbf613e4f5f0e
+      internalID: 203120585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tableCoin-sprite_1
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 31
+        width: 29
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b9dfc6226a697468f31370c66a1a6c
+      internalID: 201254013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tableCoin-sprite_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 31
+        width: 29
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1c6f46a1f2f5f449c9cf54fdb58b01
+      internalID: 2081444189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tableCoin-sprite_3
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 31
+        width: 29
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d8fcc37ea9ce5d4fb3140f5e9b3a779
+      internalID: 1123835726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +216,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tableCoin-sprite_0: 203120585
+      tableCoin-sprite_1: 201254013
+      tableCoin-sprite_2: 2081444189
+      tableCoin-sprite_3: 1123835726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
