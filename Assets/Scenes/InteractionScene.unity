@@ -4490,6 +4490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741497562}
   - component: {fileID: 1741497561}
+  - component: {fileID: 1741497563}
   m_Layer: 0
   m_Name: gangs
   m_TagString: Untagged
@@ -4570,6 +4571,25 @@ Transform:
   - {fileID: 451534624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1741497563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741497560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2347f557b73f16549ac1e46c1f68bed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxReputation: 12
+  Lheart1: {fileID: 1045035995}
+  Lheart2: {fileID: 161566608}
+  Lheart3: {fileID: 253875498}
+  Rheart1: {fileID: 451534623}
+  Rheart2: {fileID: 1453183457}
+  Rheart3: {fileID: 1005913384}
 --- !u!1 &1759997886
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,9 +71,31 @@ public class JobManager : MonoBehaviour
 
         Instance.jobNotesData.RemoveAll(note => note.job == Instance.CurrentJob);
         Debug.Log($"JobManager: Job for {Instance.CurrentJob.forGang} completed! Reward: {Instance.CurrentJob.reward} gold");
+        Instance.CurrentJob.JobDone();
         Instance.ClearCurrentJob();
 
         // If there's a JobGenerator in the scene, notify it to replenish the board if needed
+        var generator = FindObjectOfType<JobGenerator>();
+        if (generator != null)
+        {
+            generator.ReplenishIfNeeded();
+        }
+    }
+
+    public static void PartlyCompleteCurrentJob(uint CompletedItems)
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot complete job.");
+        }
+        if (Instance.CurrentJob == null)
+        {
+            return; // No job to complete
+        }
+        Instance.CurrentJob.PartlyDone(CompletedItems);
+        Instance.jobNotesData.RemoveAll(note => note.job == Instance.CurrentJob);
+        Debug.Log($"JobManager: Job for {Instance.CurrentJob.forGang} partlt completed!");
+        Instance.ClearCurrentJob();
         var generator = FindObjectOfType<JobGenerator>();
         if (generator != null)
         {

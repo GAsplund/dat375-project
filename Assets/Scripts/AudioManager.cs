@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShotEffect(AudioClip clip, Transform sourceTransform, float volume = 1f)
     {
-        if (clip == null) return;
+        if (clip == null||effectSource==null) return;
         effectSource.PlayOneShot(clip, volume);
     }
 

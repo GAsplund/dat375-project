@@ -51,6 +51,7 @@ public class MoneyManager : MonoBehaviour
         }
 
         Instance.AddMoney(amount);
+       
     }
 
     public static void Subtract(int amount)
