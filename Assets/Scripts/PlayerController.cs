@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-    private InfluenceStats influenceStats;
 
     private enum Direction
     {
@@ -22,7 +21,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        influenceStats = FindObjectOfType<InfluenceStats>();
     }
 
     void FixedUpdate()
@@ -47,15 +45,6 @@ public class PlayerController : MonoBehaviour
         {
             Direction direction = GetDirection(movement);
             animator.SetInteger("Direction", (int)direction);
-
-            if (direction == Direction.Up)
-            {
-                influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Right);
-            }
-            else if (direction == Direction.Down)
-            {
-                influenceStats.AddInfluence(1, InfluenceStats.InfluenceDirection.Left);
-            }
 
             if (!IsInvoking(nameof(PlayWalkingSound)))
             {
