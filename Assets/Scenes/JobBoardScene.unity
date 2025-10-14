@@ -217,7 +217,7 @@ MonoBehaviour:
   panel: {fileID: 248096534}
   titleText: {fileID: 1032703190}
   detailsText: {fileID: 425308502}
-  sceneToLoad: CleaningScene
+  sceneToLoad: InteractionScene
 --- !u!1 &417698183
 GameObject:
   m_ObjectHideFlags: 0

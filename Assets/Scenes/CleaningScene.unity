@@ -334,7 +334,7 @@ Transform:
   m_GameObject: {fileID: 568685857}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1280, y: -720, z: 0}
+  m_LocalPosition: {x: -816.99, y: -426.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -852,11 +852,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e3db727c0f7eb4d9a6af8321040a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalLaundryItems: 3
   approvedText: {fileID: 351153351}
   itemsRemainingText: {fileID: 1055469308}
   sceneToLoad: InteractionScene
-  tshirtPrefab: {fileID: 6781515109822791204, guid: 1521df4168d79644ba15a10778c45773, type: 3}
+  defaultPrefab: {fileID: 6781515109822791204, guid: 1521df4168d79644ba15a10778c45773, type: 3}
+  clothingPrefabs:
+  - type: 0
+    prefab: {fileID: 6781515109822791204, guid: 1521df4168d79644ba15a10778c45773, type: 3}
+  - type: 1
+    prefab: {fileID: 6781515109822791204, guid: 143c7d0c7411ac94baf4dd9e6c27551a, type: 3}
 --- !u!4 &1372805029
 Transform:
   m_ObjectHideFlags: 0
