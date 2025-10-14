@@ -28,9 +28,12 @@ public class JobGenerator : MonoBehaviour
     [Tooltip("If true, the job board will be populated with jobs when the scene starts.")]
     [SerializeAs("Populate Board")]
     [SerializeField] private bool populateOnStart = true;
-    [Tooltip("Number of jobs to generate on the job board.")]
-    [SerializeAs("Jobs To Generate")]
-    [SerializeField] private int jobsToGenerate = 5;
+    [Tooltip("Minimum number of job notes to keep on the board.")]
+    [SerializeAs("Jobs Min")]
+    [SerializeField] private int jobsMin = 3;
+    [Tooltip("Maximum number of job notes to keep on the board.")]
+    [SerializeAs("Jobs Max")]
+    [SerializeField] private int jobsMax = 6;
     [Tooltip("Prefab used for job notes. Must have a SpriteRenderer and JobNote component.")]
     [SerializeAs("Job Note Prefab")]
     [SerializeField] private GameObject JobNotePrefab;
@@ -51,12 +54,26 @@ public class JobGenerator : MonoBehaviour
 
     private List<Vector3> occupiedPositions = new List<Vector3>();
     private Vector2 noteSize;
+    private List<JobNoteData> generatedNotesData = new List<JobNoteData>();
 
     public void Start()
     {
-        if (populateOnStart)
+        if (!populateOnStart)
         {
-            PopulateBoard();
+            return;
+        }
+
+        var stored = JobManager.GetGeneratedJobs();
+        if (stored != null && stored.Count > 0)
+        {
+            InstantiateFromStored(stored);
+            return;
+        }
+
+        PopulateBoard();
+        if (generatedNotesData.Count > 0)
+        {
+            JobManager.StoreGeneratedJobs(generatedNotesData);
         }
     }
 
@@ -102,7 +119,8 @@ public class JobGenerator : MonoBehaviour
         occupiedPositions.Clear();
         noteSize = JobNotePrefab.GetComponent<SpriteRenderer>().bounds.size;
 
-        for (int i = 0; i < jobsToGenerate; i++)
+        // Generate up to the maximum initially, then store them.
+        for (int i = 0; i < jobsMax; i++)
         {
             var job = GenerateJob();
             CreateJobNote(job);
@@ -122,6 +140,64 @@ public class JobGenerator : MonoBehaviour
         var jobNoteInstance = Instantiate(JobNotePrefab, position.Value, Quaternion.identity);
         jobNoteInstance.GetComponent<JobNote>().job = job;
         occupiedPositions.Add(position.Value);
+        generatedNotesData.Add(new JobNoteData(job, position.Value));
+    }
+
+    private void InstantiateFromStored(List<JobNoteData> stored)
+    {
+        if (JobNotePrefab == null)
+        {
+            throw new System.NotSupportedException("JobNotePrefab must be assigned in the inspector to populate the job board.");
+        }
+
+        occupiedPositions.Clear();
+        noteSize = JobNotePrefab.GetComponent<SpriteRenderer>().bounds.size;
+
+        foreach (var data in stored)
+        {
+            var jobNoteInstance = Instantiate(JobNotePrefab, data.position, Quaternion.identity);
+            jobNoteInstance.GetComponent<JobNote>().job = data.job;
+            occupiedPositions.Add(data.position);
+            generatedNotesData.Add(data);
+        }
+
+        ReplenishIfNeeded();
+    }
+
+    /// <summary>
+    /// Call this to evaluate the current number of job notes and replenish according to min/max & probability rules.
+    /// This method will create up to `jobsMax - currentCount` new notes, with higher chance when the board is further below max.
+    /// </summary>
+    public void ReplenishIfNeeded()
+    {
+        int current = generatedNotesData.Count;
+        if (current >= jobsMax) return;
+
+        // If below minimum, generate at least one (or up to fill min)
+        if (current < jobsMin)
+        {
+            int toCreate = Mathf.Min(jobsMax - current, Mathf.Max(1, jobsMin - current));
+            for (int i = 0; i < toCreate; i++)
+            {
+                var job = GenerateJob();
+                CreateJobNote(job);
+            }
+            current = generatedNotesData.Count;
+        }
+
+        // For remaining slots up to max, use probability per slot
+        for (int slot = current + 1; slot <= jobsMax; slot++)
+        {
+            float deficit = jobsMax - (slot - 1);
+            float probability = Mathf.Clamp01(deficit / jobsMax);
+            if (Random.value < probability)
+            {
+                var job = GenerateJob();
+                CreateJobNote(job);
+            }
+        }
+
+        JobManager.StoreGeneratedJobs(generatedNotesData);
     }
 
     private Vector3? GetNonOverlappingPosition()

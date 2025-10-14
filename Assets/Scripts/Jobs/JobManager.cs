@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class JobManager : MonoBehaviour
@@ -5,6 +6,8 @@ public class JobManager : MonoBehaviour
     private static JobManager Instance;
 
     private Job CurrentJob;
+    // Store serializable data for job notes so they can persist between scenes
+    private List<JobNoteData> jobNotesData = new List<JobNoteData>();
 
     private void Awake()
     {
@@ -50,6 +53,34 @@ public class JobManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Static method to mark the current job as completed and clear it.
+    /// </summary>
+    /// <remarks> This also removes the job from the stored job notes. </remarks>
+    public static void CompleteCurrentJob()
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot complete job.");
+        }
+
+        if (Instance.CurrentJob == null)
+        {
+            return; // No job to complete
+        }
+
+        Instance.jobNotesData.RemoveAll(note => note.job == Instance.CurrentJob);
+        Debug.Log($"JobManager: Job for {Instance.CurrentJob.forGang} completed! Reward: {Instance.CurrentJob.reward} gold");
+        Instance.ClearCurrentJob();
+
+        // If there's a JobGenerator in the scene, notify it to replenish the board if needed
+        var generator = FindObjectOfType<JobGenerator>();
+        if (generator != null)
+        {
+            generator.ReplenishIfNeeded();
+        }
+    }
+
+    /// <summary>
     /// Static method to clear the current job.
     /// </summary>
     public static void ClearJob()
@@ -71,6 +102,33 @@ public class JobManager : MonoBehaviour
         return Instance != null && Instance.CurrentJob != null;
     }
 
+    /// <summary>
+    /// Static method to get jobs that have already been generated and stored.
+    /// </summary>
+    public static System.Collections.Generic.List<JobNoteData> GetGeneratedJobs()
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot get generated jobs.");
+        }
+
+        return Instance.jobNotesData;
+    }
+
+    /// <summary>
+    /// Static method to store generated job notes.
+    /// </summary>
+    /// <param name="jobs">The job notes to store</param>
+    public static void StoreGeneratedJobs(System.Collections.Generic.List<JobNoteData> jobs)
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot store generated jobs.");
+        }
+
+        Instance.SetGeneratedJobs(jobs);
+    }
+
     // ========== Instance Methods ==========
 
     /// <summary>
@@ -90,5 +148,15 @@ public class JobManager : MonoBehaviour
     {
         CurrentJob = null;
         Debug.Log("JobManager: Current job cleared");
+    }
+
+    /// <summary>
+    /// Instance method to store generated job notes.
+    /// </summary>
+    /// <param name="jobs">The job notes to store</param>
+    private void SetGeneratedJobs(System.Collections.Generic.List<JobNoteData> jobs)
+    {
+        jobNotesData = jobs ?? new System.Collections.Generic.List<JobNoteData>();
+        Debug.Log($"JobManager: Stored {jobNotesData.Count} generated jobs");
     }
 }
