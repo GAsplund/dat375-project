@@ -3,32 +3,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler
 {
-    private CursorManager cursorManager;
     [SerializeField] private UnityEvent onClick;
-
-    void Start()
-    {
-        cursorManager = FindObjectOfType<CursorManager>();
-        if (cursorManager == null)
-        {
-            Debug.LogWarning("CursorManager not found in the scene. Cursor changes will be ignored.");
-        }
-    }
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip mouseDownSound;
+    [SerializeField] private AudioClip mouseUpSound;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        cursorManager?.SetHovering(true);
+        CursorManager.SetHovering(true, hoverSound);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        cursorManager?.SetHovering(false);
+        CursorManager.SetHovering(false);
+    }
+
+    public void OnPointerDown(PointerEventData _)
+    {
+        AudioManager.instance?.PlayOneShotEffect(mouseDownSound, transform);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.instance?.PlayOneShotEffect(mouseUpSound, transform);
         onClick?.Invoke();
     }
 }

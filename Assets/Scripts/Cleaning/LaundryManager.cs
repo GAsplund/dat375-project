@@ -27,6 +27,7 @@ public class LaundryManager : MonoBehaviour
     // Track progress using the job's items
     private int currentItem = 0;
     private int totalItemsToClean = 0;
+    private bool jobCompleted = false;
 
     void Awake()
     {
@@ -58,6 +59,8 @@ public class LaundryManager : MonoBehaviour
 
     public void OnLaundryItemCleaned()
     {
+        if (jobCompleted) return;
+
         // Advance to next item from the job
         currentItem++;
 
@@ -107,6 +110,8 @@ public class LaundryManager : MonoBehaviour
 
     private IEnumerator OnJobDone()
     {
+        jobCompleted = true;
+
         // Reward the player and complete the job
         var reward = JobManager.GetCurrentJob().reward;
         MoneyManager.Add(reward);

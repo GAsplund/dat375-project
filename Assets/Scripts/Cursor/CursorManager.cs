@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
+    private static CursorManager Instance;
+
     [Header("Default Cursor Settings")]
     [SerializeField] private Texture2D defaultCursorTexture;
     [SerializeField] private Vector2 defaultHotSpot = Vector2.zero;
@@ -14,10 +16,27 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D clickCursorTexture;
     [SerializeField] private Vector2 clickHotSpot = Vector2.zero;
 
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip clickDownSound;
+    [SerializeField] private AudioClip clickUpSound;
+
     private bool isHovering = false;
 
     private enum CursorState { Default, Hover, Clicked }
     private CursorState currentCursorState = CursorState.Default;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -46,7 +65,17 @@ public class CursorManager : MonoBehaviour
         ApplyState(desired);
     }
 
-    public void SetHovering(bool hovering) => isHovering = hovering;
+    public static void SetHovering(bool hovering, bool playSound = true) => SetHovering(hovering, null, playSound);
+
+    public static void SetHovering(bool hovering, AudioClip customSound, bool playSound = true)
+    {
+        if (Instance == null) return;
+        
+        Instance.isHovering = hovering;
+
+        if (!playSound || !hovering) return;
+        AudioManager.instance?.PlayOneShotEffect(customSound ?? Instance.hoverSound, Instance.transform);
+    }
 
     private void ApplyState(CursorState state)
     {

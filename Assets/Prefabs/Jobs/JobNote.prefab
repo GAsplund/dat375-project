@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: ff3e8be5a8af6434ba435c627d095bfd, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6b465f800316b5b4ea483f29a9813d2c, type: 3}
+  hoverSound: {fileID: 8300000, guid: bbe46f83f43bc624396f3bdee3080b20, type: 3}
 --- !u!114 &4149145439243064866
 MonoBehaviour:
   m_ObjectHideFlags: 0
