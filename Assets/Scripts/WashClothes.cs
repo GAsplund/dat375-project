@@ -83,6 +83,32 @@ public class WashClothes : MonoBehaviour
         return true; // Blood cleaned
     }
 
+    public void EarlyQuit()
+    {
+        GameManager.Instance.CurrentJobDone(checkProgress());
+        SceneManager.LoadScene(sceneToLoad);
+    }
+    float checkProgress()
+    {
+        if (!AllDirtClean())
+        {
+            float progress = 0f;
+            foreach (var dirtRenderer in dirtRenderers)
+            {
+                if (dirtRenderer != null)
+                {
+                    progress += (1 - dirtRenderer.color.a);
+                }
+            }
+            progress /= dirtRenderers.Length;
+                return progress;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
     IEnumerator ShowApprovedAndChangeScene()
     {
         isApproved = true;
