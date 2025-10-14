@@ -32,4 +32,8 @@ public class MoneyManager : MonoBehaviour
         currentMoney -= amount;
         OnValueChange?.Invoke(currentMoney);
     }
+    void Update()
+    {
+        currentMoney = GameManager.Instance.GetCurrentMoney();
+    }
 }

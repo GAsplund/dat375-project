@@ -26,18 +26,22 @@ public class MoneyCounterController : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        MoneyManager.OnValueChange += UpdateMoneyDisplay;
-    }
+    //void OnEnable()
+    //{
+    //    MoneyManager.OnValueChange += UpdateMoneyDisplay;
+    //}
 
-    void OnDisable()
-    {
-        MoneyManager.OnValueChange -= UpdateMoneyDisplay;
-    }
+    //void OnDisable()
+    //{
+    //    MoneyManager.OnValueChange -= UpdateMoneyDisplay;
+    //}
 
     private void UpdateMoneyDisplay(int currentMoney)
     {
         moneyText.text = $"Money: {currentMoney}";
+    }
+    private void Update()
+    {
+        UpdateMoneyDisplay(GameManager.Instance.GetCurrentMoney());
     }
 }

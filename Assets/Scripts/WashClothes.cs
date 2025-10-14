@@ -100,7 +100,7 @@ public class WashClothes : MonoBehaviour
             if (dirt != null)
                 dirt.SetActive(false);
         }
-
+        GameManager.Instance.CurrentJobDone(1);
         SceneManager.LoadScene(sceneToLoad);
     }
 }

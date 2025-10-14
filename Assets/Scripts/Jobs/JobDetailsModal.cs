@@ -60,6 +60,7 @@ public class JobDetailsModal : MonoBehaviour
         }
 
         JobManager.SetJob(currentJob);
+        GameManager.Instance.SetCurrentJob(currentJob);
         SceneManager.LoadScene(sceneToLoad);
     }
 }

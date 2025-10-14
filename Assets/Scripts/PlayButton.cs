@@ -12,18 +12,6 @@ public class PlayButton : MonoBehaviour
 
     public SceneAsset GameScene;
 
-    //private void OnMouseEnter()
-    //{
-    //  ButtonUp.enabled = false;
-    //   ButtonDown.enabled = true;
-    //}
-
-    //private void OnMouseExit()
-    //{
-    //    ButtonUp.enabled = true;
-    //    ButtonDown.enabled = false;
-    //}
-
 
     private void OnMouseEnter()
     {
