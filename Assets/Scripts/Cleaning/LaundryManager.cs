@@ -148,7 +148,7 @@ public class LaundryManager : MonoBehaviour
             approvedText.text = $"Job partly Done!  rewarded {currentRewards} gold ";
         }
 
-        JobManager.PartlyCompleteCurrentJob();
+        JobManager.CompleteCurrentJob();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneToLoad);
     }
