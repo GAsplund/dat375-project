@@ -80,6 +80,32 @@ public class JobManager : MonoBehaviour
             generator.ReplenishIfNeeded();
         }
     }
+    /// <summary>
+    /// Method to remove the current job when player selects to quit washing early in cleaning scene 
+    /// </summary>
+    /// <exception cref="System.NotSupportedException"></exception>
+    public static void PartlyCompleteCurrentJob()
+    {
+        if (Instance == null)
+        {
+            throw new System.NotSupportedException("JobManager instance does not exist in the scene. Cannot partly complete job.");
+        }
+
+        if (Instance.CurrentJob == null)
+        {
+            return; // No job to complete
+        }
+
+        Instance.jobNotesData.RemoveAll(note => note.job == Instance.CurrentJob);
+        Debug.Log($"JobManager: Job for {Instance.CurrentJob.forGang} partly completed! ");
+        Instance.ClearCurrentJob();
+
+        var generator = FindObjectOfType<JobGenerator>();
+        if (generator != null)
+        {
+            generator.ReplenishIfNeeded();
+        }
+    }
 
     /// <summary>
     /// Static method to clear the current job.
