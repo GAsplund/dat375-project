@@ -13,7 +13,14 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        instance ??= this;
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlayOneShotEffect(AudioClip clip, Transform sourceTransform, float volume = 1f)
@@ -26,6 +33,7 @@ public class AudioManager : MonoBehaviour
     {
         if (clips.Length == 0) return;
         AudioClip clip = clips[Random.Range(0, clips.Length)];
+        if (clip == null) return;
         PlayOneShotEffect(clip, sourceTransform, volume);
     }
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,7 +12,6 @@ public class HoverSpriteChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
     private Sprite hoverSprite;
 
     private SpriteRenderer spriteRenderer;
-    private CursorManager cursorManager;
 
     private void Awake()
     {
@@ -29,12 +29,6 @@ public class HoverSpriteChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
 
         spriteRenderer.sprite = defaultSprite;
-
-        cursorManager = FindObjectOfType<CursorManager>();
-        if (cursorManager == null)
-        {
-            Debug.LogWarning("CursorManager not found in the scene. Cursor changes will be ignored.");
-        }
     }
 
     private void OnValidate()
@@ -57,7 +51,7 @@ public class HoverSpriteChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
             spriteRenderer.sprite = hoverSprite;
         }
 
-        cursorManager?.SetHovering(true);
+        CursorManager.SetHovering(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -67,6 +61,6 @@ public class HoverSpriteChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
             spriteRenderer.sprite = defaultSprite;
         }
 
-        cursorManager?.SetHovering(false);
+        CursorManager.SetHovering(false);
     }
 }
