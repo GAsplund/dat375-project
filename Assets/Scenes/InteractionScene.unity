@@ -4743,6 +4743,8 @@ MonoBehaviour:
   Rheart1: {fileID: 451534623}
   Rheart2: {fileID: 1453183457}
   Rheart3: {fileID: 1005913384}
+  BarShouldActive:
+  - InteractionScene
 --- !u!1 &1759997886
 GameObject:
   m_ObjectHideFlags: 0

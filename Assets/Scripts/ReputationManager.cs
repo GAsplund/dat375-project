@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReputationManager : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class ReputationManager : MonoBehaviour
     public SpriteRenderer Rheart2;
     public SpriteRenderer Rheart3;
 
+    public string[] BarShouldActive;
 
     void Awake()
     {
@@ -31,10 +34,20 @@ public class ReputationManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
-    // Update is called once per frame
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+       if(BarShouldActive.Contains(scene.name))
+        {
+            gameObject.SetActive(true);
+        }else
+        {
+            gameObject.SetActive(false);
+        }
+    }
     public static void ChangeReputationL(int rptn)
     {
         Instance.changeL(rptn);
