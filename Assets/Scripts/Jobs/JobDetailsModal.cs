@@ -10,8 +10,8 @@ public class JobDetailsModal : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI detailsText;
     [SerializeField] private string sceneToLoad = "InteractionScene"; // Scene to load when job is accepted
+    [SerializeField] private AudioClip openSound;
 
-    private CursorManager cursorManager;
     private Job currentJob;
 
     private void Awake()
@@ -22,18 +22,11 @@ public class JobDetailsModal : MonoBehaviour
         if (panel != null) panel.SetActive(false);
     }
 
-    private void Start()
-    {
-        cursorManager = FindObjectOfType<CursorManager>();
-        if (cursorManager == null)
-        {
-            Debug.LogWarning("CursorManager not found in the scene. Cursor changes will be ignored.");
-        }
-    }
-
     public void Show(Job job)
     {
         if (job == null || panel == null) return;
+
+        AudioManager.instance?.PlayOneShotEffect(openSound, transform);
 
         currentJob = job; // Store reference to current job
         panel.SetActive(true);
@@ -44,7 +37,7 @@ public class JobDetailsModal : MonoBehaviour
     public void Hide()
     {
         if (panel != null) panel.SetActive(false);
-        cursorManager?.SetHovering(false); // Work around for the fact that the button disappears before OnPointerExit is called
+        CursorManager.SetHovering(false); // Work around for the fact that the button disappears before OnPointerExit is called
     }
 
     /// <summary>
@@ -59,6 +52,7 @@ public class JobDetailsModal : MonoBehaviour
             return;
         }
 
+        CursorManager.SetHovering(false);
         JobManager.SetJob(currentJob);
         SceneManager.LoadScene(sceneToLoad);
     }

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
+    private static CursorManager Instance;
+
     [Header("Default Cursor Settings")]
     [SerializeField] private Texture2D defaultCursorTexture;
     [SerializeField] private Vector2 defaultHotSpot = Vector2.zero;
@@ -18,6 +20,18 @@ public class CursorManager : MonoBehaviour
 
     private enum CursorState { Default, Hover, Clicked }
     private CursorState currentCursorState = CursorState.Default;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -46,7 +60,7 @@ public class CursorManager : MonoBehaviour
         ApplyState(desired);
     }
 
-    public void SetHovering(bool hovering) => isHovering = hovering;
+    public static void SetHovering(bool hovering) => Instance.isHovering = hovering;
 
     private void ApplyState(CursorState state)
     {
