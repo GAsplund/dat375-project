@@ -111,8 +111,6 @@ public class LaundryManager : MonoBehaviour
     private IEnumerator OnJobDone()
     {
         // Reward the player and complete the job
-        //var reward = JobManager.GetCurrentJob().reward;
-        //MoneyManager.Add(reward);
        
         JobManager.CompleteCurrentJob();
 
