@@ -4,6 +4,8 @@ using System.Linq;
 
 public class UpgradeManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip upgradeSound;
+
     public static UpgradeManager Instance;
 
 
@@ -50,6 +52,10 @@ public class UpgradeManager : MonoBehaviour
         if (savedStep < floors.Length - 1)
         {
             savedStep++;
+            if (upgradeSound != null)
+            {
+                AudioManager.instance.PlayOneShotSfx(upgradeSound);
+            }
             UpdateVisuals();
             CanAffordUpgrades();
         }

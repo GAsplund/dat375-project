@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Sources")]
     [SerializeField] AudioSource effectSource;
+    [SerializeField] AudioSource sfxSource;
 
     private void Awake()
     {
@@ -23,17 +25,31 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayOneShotEffect(AudioClip clip, Transform sourceTransform, float volume = 1f)
+    public void PlayOneShotEffect(AudioClip clip, float volume = 1f)
     {
-        if (clip == null||effectSource==null) return;
+        if (clip == null || effectSource == null) return;
         effectSource.PlayOneShot(clip, volume);
     }
+    
+    public void PlayOneShotSfx(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null || sfxSource == null) return;
+        sfxSource.PlayOneShot(clip, volume);
+    }
 
-    public void PlayRandomOneShotEffect(AudioClip[] clips, Transform sourceTransform, float volume = 1f)
+    public void PlayRandomOneShotEffect(AudioClip[] clips, float volume = 1f)
     {
         if (clips.Length == 0) return;
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         if (clip == null) return;
-        PlayOneShotEffect(clip, sourceTransform, volume);
+        PlayOneShotEffect(clip, volume);
+    }
+
+    public void PlayRandomOneShotSfx(AudioClip[] clips, float volume = 1f)
+    {
+        if (clips.Length == 0) return;
+        AudioClip clip = clips[Random.Range(0, clips.Length)];
+        if (clip == null) return;
+        PlayOneShotSfx(clip, volume);
     }
 }
