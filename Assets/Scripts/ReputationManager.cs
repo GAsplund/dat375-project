@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +10,6 @@ public class ReputationManager : MonoBehaviour
     private static ReputationManager Instance;
 
     public int MaxReputation;
-    private int reputationL = 0;
-    private int reputationR = 0;
-
-    private int Lhearts = 3;
-    private int Rhearts = 3;
 
     public SpriteRenderer Lheart1;
     public SpriteRenderer Lheart2;
@@ -25,11 +21,21 @@ public class ReputationManager : MonoBehaviour
 
     public string[] BarShouldActive;
 
+    private int reputationL = 0;
+    private int reputationLBuffer = 0;
+    private int reputationR = 0;
+    private int reputationRBuffer = 0;
+
+    private int Lhearts = 3;
+    private int Rhearts = 3;
+
+    private string currentScene = "InteractionScene";
+
     void Awake()
     {
         if (Instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         Instance = this;
@@ -40,14 +46,27 @@ public class ReputationManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       if(BarShouldActive.Contains(scene.name))
+        if (BarShouldActive.Contains(scene.name))
         {
             gameObject.SetActive(true);
-        }else
+
+            RegisterHearts();
+
+            reputationL += reputationLBuffer;
+            reputationR += reputationRBuffer;
+
+            reputationLBuffer = 0;
+            reputationRBuffer = 0;
+
+            OnReputationChanged();
+        }
+        else
         {
             gameObject.SetActive(false);
         }
+        currentScene = scene.name;
     }
+
     public static void ChangeReputationL(int rptn)
     {
         Instance.changeL(rptn);
@@ -60,17 +79,28 @@ public class ReputationManager : MonoBehaviour
 
     private void changeL(int rptn)
     {
+        if (!BarShouldActive.Contains(currentScene))
+        {
+            reputationLBuffer += rptn;
+            return;
+        }
         reputationL += rptn;
         OnReputationChanged();
     }
     private void changeR(int rptn)
     {
+        if (!BarShouldActive.Contains(currentScene))
+        {
+            reputationRBuffer += rptn;
+            return;
+        }
         reputationR += rptn;
         OnReputationChanged();
     }
 
     private void OnReputationChanged()
     {
+        Debug.Log("Reputation Changed: L=" + reputationL + ", R=" + reputationR);
         if (reputationL >= MaxReputation)
         {
             Lhearts--;
@@ -81,6 +111,8 @@ public class ReputationManager : MonoBehaviour
             Rhearts--;
             reputationR = 0;
         }
+
+        Debug.Log("Hearts Left: L=" + Lhearts + ", R=" + Rhearts);
 
         switch (Lhearts)
         {
@@ -115,9 +147,9 @@ public class ReputationManager : MonoBehaviour
                 Rheart3.enabled = false;
                 break;
             case 2:
-               Rheart1.enabled = true;
-               Rheart2.enabled = true;
-               Rheart3.enabled = false;
+                Rheart1.enabled = true;
+                Rheart2.enabled = true;
+                Rheart3.enabled = false;
                 break;
             case 3:
                 Rheart1.enabled = true;
@@ -127,4 +159,41 @@ public class ReputationManager : MonoBehaviour
         }
     }
 
+    private void RegisterHearts()
+    {
+        var reputationBar = FindObjectOfType<ReputationBar>();
+
+        var lHearts = reputationBar.GetLeftHearts();
+        if (lHearts.Count >= 3)
+        {
+            if (lHearts.Count > 3)
+            {
+                Debug.LogWarning("More than 3 left hearts found in ReputationBar. Only the first 3 will be used.");
+            }
+            Lheart1 = lHearts[0];
+            Lheart2 = lHearts[1];
+            Lheart3 = lHearts[2];
+        }
+        else
+        {
+            throw new System.NotSupportedException("Not enough left hearts found in ReputationBar. At least 3 are required.");
+        }
+
+        var rHearts = reputationBar.GetRightHearts();
+        if (rHearts.Count >= 3)
+        {
+            if (rHearts.Count > 3)
+            {
+                Debug.LogWarning("More than 3 right hearts found in ReputationBar. Only the first 3 will be used.");
+            }
+            Rheart1 = rHearts[0];
+            Rheart2 = rHearts[1];
+            Rheart3 = rHearts[2];
+        }
+        else
+        {
+            throw new System.NotSupportedException("Not enough right hearts found in ReputationBar. At least 3 are required.");
+        }
+
+    }
 }
