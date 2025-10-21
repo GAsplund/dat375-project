@@ -19,6 +19,31 @@ public class JobGenerator : MonoBehaviour
     [SerializeAs("Max Quantity")]
     [SerializeField] private int maxQuantity = 5;
 
+    [Tooltip("Note descriptions to randomly assign to jobs."), SerializeAs("Note Descriptions")]
+    [SerializeField] private List<string> noteDescriptions = new List<string>
+    {
+        "Red shirts from last night's skirmish need cleaning. Wash out the iron scent before dawn. Payment is swift as always.",
+        "Coats torn in the alley brawl need cleaning. Scrub them clean without questions. We're building strength and your silence helps.",
+        "Trousers soaked in rival blood need cleaning. Erase the evidence as tensions rise. Loyalty now means more than coin.",
+        "Vests punched with blade marks need cleaning. Mend and purify them quietly. The Blades encroach so stay neutral for now.",
+        "Hats dirtied from a failed ambush need cleaning. Restore them to spotless condition. Fists grow bold and we need your discretion.",
+        "Gloves gripped in betrayal's fight need cleaning. Cleanse the traces. Blades whisper plots and your work buys time.",
+        "Suits slashed in midnight revenge need cleaning. Iron out the damage. War brews so choose sides with care.",
+        "Scarves knotted from choked alliances need cleaning. Untangle and launder them. Blades strike first and retaliation is imminent.",
+        "Collars stained by final pleas need cleaning. Loosen the grime. Fists close in and your balance tips the scales.",
+        "Capes heavy with fallen brothers need cleaning. Revive and return them. The feud ends soon so whose laundry is next?",
+        "Shirts ripped in warehouse raids need cleaning. Wash away the chaos. Fists demand tribute and your neutrality frays.",
+        "Ties bound with desperate oaths need cleaning. Clean and reinforce them. Blades sabotage our lines and vigilance is required.",
+        "Boots caked in territorial mud need cleaning. Polish them to perfection. Fists rally forces and alliances shift underfoot.",
+        "Jackets pierced by warning shots need cleaning. Patch and purify them. Blades encircle our turf and your aid could turn tides.",
+        "Belts buckled in hasty retreats need cleaning. Straighten the stains. Fists forge new pacts and betrayal looms larger.",
+        "Socks soaked from flooded hideouts need cleaning. Dry and deliver them. Blades flood the streets so hold the line with us.",
+        "Handkerchiefs marked by sealed deals need cleaning. Wipe the ink clean. Fists break old vows and war's edge sharpens.",
+        "Pants torn in escalating clashes need cleaning. Mend the rifts quietly. Blades prepare the final push so choose wisely now.",
+        "Vests burdened by heavy secrets need cleaning. Lighten and launder them. Fists muster for battle and your role defines the end.",
+        "Coats cloaked in impending doom need cleaning. Scrub them for survival. The clash erupts soon so whose colors will you clean?"
+    };
+
     [Header("Reward Settings")]
     [Tooltip("Settings for clothing rewards. Each clothing type should have a corresponding reward range. If duplicates exist, the first match will be used.")]
     [SerializeAs("Clothing Reward Settings")]
@@ -105,6 +130,9 @@ public class JobGenerator : MonoBehaviour
             if (rewardConfig != null)
                 newJob.reward += rewardConfig.GetRandomReward();
         }
+
+        // Randomly select a note description
+        newJob.noteDescription = noteDescriptions[Random.Range(0, noteDescriptions.Count)];
 
         return newJob;
     }

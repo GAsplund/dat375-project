@@ -155,14 +155,15 @@ RectTransform:
   m_Children:
   - {fileID: 1032703189}
   - {fileID: 425308501}
+  - {fileID: 939832185}
   - {fileID: 417698184}
   - {fileID: 1549379767}
   m_Father: {fileID: 1524504836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1191.5736, y: 670.2446}
+  m_AnchoredPosition: {x: 0.000019073, y: -0.000015259}
+  m_SizeDelta: {x: 1477.9069, y: 831.3032}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248096536
 MonoBehaviour:
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.7182671, b: 0.49461553, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -217,6 +218,7 @@ MonoBehaviour:
   panel: {fileID: 248096534}
   titleText: {fileID: 1032703190}
   detailsText: {fileID: 425308502}
+  storyText: {fileID: 939832186}
   sceneToLoad: InteractionScene
   openSound: {fileID: 8300000, guid: 742d1cd3eb861cb4d93c8956d3fe9904, type: 3}
 --- !u!1 &417698183
@@ -256,8 +258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -131.7, y: -153.1}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -172.51, y: -280}
+  m_SizeDelta: {x: 220, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &417698185
 MonoBehaviour:
@@ -368,6 +370,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
 --- !u!114 &417698189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,8 +421,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0013123, y: 0.000012875}
-  m_SizeDelta: {x: 499.9, y: 90.3811}
+  m_AnchoredPosition: {x: 0.00003097, y: 130.00623}
+  m_SizeDelta: {x: 499.9, y: 133.2234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425308502
 MonoBehaviour:
@@ -440,7 +444,141 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Details text
+  m_text: Job Details
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &425308503
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425308500}
+  m_CullTransparentMesh: 1
+--- !u!1 &939832184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939832185}
+  - component: {fileID: 939832187}
+  - component: {fileID: 939832186}
+  m_Layer: 5
+  m_Name: Story Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &939832185
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939832184}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 248096535}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00003097, y: -78}
+  m_SizeDelta: {x: 499.9, y: 215.236}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &939832186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939832184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Story Details
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -509,13 +647,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &425308503
+--- !u!222 &939832187
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425308500}
+  m_GameObject: {fileID: 939832184}
   m_CullTransparentMesh: 1
 --- !u!1 &999892894
 GameObject:
@@ -601,8 +739,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076294, y: 133}
-  m_SizeDelta: {x: 499.9052, y: 50}
+  m_AnchoredPosition: {x: 0.0000059442, y: 277}
+  m_SizeDelta: {x: 565.0126, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1032703190
 MonoBehaviour:
@@ -651,8 +789,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -903,12 +1041,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -994,8 +1132,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124.8, y: -148.8}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 162.51, y: -280}
+  m_SizeDelta: {x: 240, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549379768
 MonoBehaviour:
@@ -1106,6 +1244,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
 --- !u!114 &1549379772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1407,47 @@ MonoBehaviour:
   - The Banditos
   minQuantity: 1
   maxQuantity: 3
+  noteDescriptions:
+  - Red shirts from last night's skirmish need cleaning. Wash out the iron scent
+    before dawn. Payment is swift as always.
+  - Coats torn in the alley brawl need cleaning. Scrub them clean without questions.
+    We're building strength and your silence helps.
+  - Trousers soaked in rival blood need cleaning. Erase the evidence as tensions
+    rise. Loyalty now means more than coin.
+  - Vests punched with blade marks need cleaning. Mend and purify them quietly. The
+    Blades encroach so stay neutral for now.
+  - Hats dirtied from a failed ambush need cleaning. Restore them to spotless condition.
+    Fists grow bold and we need your discretion.
+  - Gloves gripped in betrayal's fight need cleaning. Cleanse the traces. Blades
+    whisper plots and your work buys time.
+  - Suits slashed in midnight revenge need cleaning. Iron out the damage. War brews
+    so choose sides with care.
+  - Scarves knotted from choked alliances need cleaning. Untangle and launder them.
+    Blades strike first and retaliation is imminent.
+  - Collars stained by final pleas need cleaning. Loosen the grime. Fists close in
+    and your balance tips the scales.
+  - Capes heavy with fallen brothers need cleaning. Revive and return them. The feud
+    ends soon so whose laundry is next?
+  - Shirts ripped in warehouse raids need cleaning. Wash away the chaos. Fists demand
+    tribute and your neutrality frays.
+  - Ties bound with desperate oaths need cleaning. Clean and reinforce them. Blades
+    sabotage our lines and vigilance is required.
+  - Boots caked in territorial mud need cleaning. Polish them to perfection. Fists
+    rally forces and alliances shift underfoot.
+  - Jackets pierced by warning shots need cleaning. Patch and purify them. Blades
+    encircle our turf and your aid could turn tides.
+  - Belts buckled in hasty retreats need cleaning. Straighten the stains. Fists forge
+    new pacts and betrayal looms larger.
+  - Socks soaked from flooded hideouts need cleaning. Dry and deliver them. Blades
+    flood the streets so hold the line with us.
+  - Handkerchiefs marked by sealed deals need cleaning. Wipe the ink clean. Fists
+    break old vows and war's edge sharpens.
+  - Pants torn in escalating clashes need cleaning. Mend the rifts quietly. Blades
+    prepare the final push so choose wisely now.
+  - Vests burdened by heavy secrets need cleaning. Lighten and launder them. Fists
+    muster for battle and your role defines the end.
+  - Coats cloaked in impending doom need cleaning. Scrub them for survival. The clash
+    erupts soon so whose colors will you clean?
   clothingRewards:
   - type: 0
     minReward: 1

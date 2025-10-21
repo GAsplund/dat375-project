@@ -10,6 +10,7 @@ public class Job
     public JobType jobType;
     public int reward;
     public ClothingType[] clothes;
+    public string noteDescription;
 
     public string Description()
     {
@@ -23,5 +24,10 @@ public class Job
     public int NumberOfClothes()
     {
         return clothes.Length;
+    }
+
+    public string StoryDescription()
+    {
+        return noteDescription;
     }
 }
