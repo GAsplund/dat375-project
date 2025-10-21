@@ -33,12 +33,14 @@ public class UpgradeManager : MonoBehaviour
     {
         TryPopulateArraysIfNeeded();
         UpdateVisuals();
+        CanAffordUpgrades();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         TryPopulateArraysIfNeeded();
         UpdateVisuals();
+        CanAffordUpgrades();
     }
 
 
@@ -49,6 +51,7 @@ public class UpgradeManager : MonoBehaviour
         {
             savedStep++;
             UpdateVisuals();
+            CanAffordUpgrades();
         }
     }
 
@@ -90,6 +93,18 @@ public class UpgradeManager : MonoBehaviour
                                    .Where(t => t != starsParent.transform)
                                    .Select(t => t.gameObject)
                                    .ToArray();
+        }
+    }
+
+    private void CanAffordUpgrades()
+    {
+        if (MoneyManager.getCurrentMoney() > GetUpgradeCost())
+        {
+            FindObjectOfType<CashRegisterController>()?.CanPay();
+        }
+        else
+        {
+            FindObjectOfType<CashRegisterController>()?.CannotPay();
         }
     }
 }

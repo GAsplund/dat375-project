@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6787d6673ec5e7b428c2582dc83f04d0
+guid: 52e60995178c12e41a6c3a608cb44bb7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk Right_0
+      name: down_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 20
         y: 19
-        width: 16
+        width: 22
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -137,40 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 209323a1d7fe8f14eb06bac48461be74
-      internalID: 1564331913
+      spriteID: 0f7ce88b3b79b8043b1148469abb1a80
+      internalID: -2129923027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk Right_1
+      name: down_1
       rect:
         serializedVersion: 2
-        x: 89
+        x: 84
         y: 19
-        width: 16
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13c2de4ee37083443ba86e0025916bfa
-      internalID: 323552662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk Right_2
-      rect:
-        serializedVersion: 2
-        x: 153
-        y: 19
-        width: 16
+        width: 22
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -179,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c66b7b5e659e424294b262e7555f16a
-      internalID: 1993280126
+      spriteID: 06a462a21c6baa64b9e447efed761d0c
+      internalID: 1959572704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk Right_3
+      name: down_2
       rect:
         serializedVersion: 2
-        x: 217
+        x: 148
         y: 19
-        width: 16
-        height: 30
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,8 +179,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d99b3dcfd9e11fe4f8253971f200b301
-      internalID: 550617840
+      spriteID: e0ef7667143337846adbdd2cbff87efd
+      internalID: -442773070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: down_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 19
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda4a8e4394b69543953c0c603cb83c1
+      internalID: -1949780464
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walk Right_0: 1564331913
-      Walk Right_1: 323552662
-      Walk Right_2: 1993280126
-      Walk Right_3: 550617840
+      down_0: -2129923027
+      down_1: 1959572704
+      down_2: -442773070
+      down_3: -1949780464
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

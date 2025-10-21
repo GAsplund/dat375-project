@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using Unity.Burst.CompilerServices;
 
 /// <summary>
 /// This class is responsible for controlling the money counter in the game.
@@ -51,7 +52,7 @@ public class MoneyManager : MonoBehaviour
         }
 
         Instance.AddMoney(amount);
-       
+
     }
 
     public static void Subtract(int amount)
@@ -62,6 +63,16 @@ public class MoneyManager : MonoBehaviour
         }
 
         Instance.SubtractMoney(amount);
+    }
+
+    public static int getCurrentMoney()
+    {
+        if (Instance == null)
+        {
+            throw new NotSupportedException("MoneyManager instance does not exist in the scene. Cannot get current money.");
+        }
+
+        return Instance.currentMoney;
     }
 
     /** Instance Methods **/
