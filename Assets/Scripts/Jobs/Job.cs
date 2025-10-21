@@ -10,9 +10,8 @@ public class Job
     public JobType jobType;
     public int reward;
     public ClothingType[] clothes;
-    //The Banditos
-    //The Cowboy Hats
-    
+    public string noteDescription;
+
     public string Description()
     {
         string description = "Job for " + forGang + ": \n";
@@ -46,7 +45,7 @@ public class Job
         MoneyManager.Add((int)Completation * reward);
         if (forGang == "The Banditos")
         {
-            ReputationManager.ChangeReputationL((int)Completation*reward);
+            ReputationManager.ChangeReputationL((int)Completation * reward);
 
         }
         else
@@ -54,6 +53,10 @@ public class Job
             ReputationManager.ChangeReputationR((int)Completation * reward);
 
         }
+    }
 
+    public string StoryDescription()
+    {
+        return noteDescription;
     }
 }

@@ -9,6 +9,7 @@ public class JobDetailsModal : MonoBehaviour
     [SerializeField] private GameObject panel; // panel root to enable/disable
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI detailsText;
+    [SerializeField] private TextMeshProUGUI storyText;
     [SerializeField] private string sceneToLoad = "InteractionScene"; // Scene to load when job is accepted
     [SerializeField] private AudioClip openSound;
 
@@ -32,6 +33,7 @@ public class JobDetailsModal : MonoBehaviour
         panel.SetActive(true);
         titleText.text = $"Job for {job.forGang}";
         detailsText.text = $"Reward: {job.reward} gold\nItems: {job.NumberOfClothes()}";
+        storyText.text = job.noteDescription;
     }
 
     public void Hide()
