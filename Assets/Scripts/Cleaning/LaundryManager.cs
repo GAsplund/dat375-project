@@ -20,6 +20,7 @@ public class LaundryManager : MonoBehaviour
     [SerializeField] private string sceneToLoad = "InteractionScene";
     [SerializeField] private GameObject defaultPrefab;
     [SerializeField] private ClothingPrefab[] clothingPrefabs;
+    [SerializeField] private AudioClip jobFinishSound;
 
     private Dictionary<ClothingType, GameObject> prefabMap;
     private ClothingType[] clothesToClean;
@@ -124,12 +125,17 @@ public class LaundryManager : MonoBehaviour
             approvedText.text = "Job Done!";
         }
 
+        if (jobFinishSound != null)
+        {
+            AudioManager.instance.PlayOneShotEffect(jobFinishSound, transform);
+        }
+
         if (itemsRemainingText != null)
         {
             itemsRemainingText.enabled = false;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
 
         SceneManager.LoadScene(sceneToLoad);

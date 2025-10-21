@@ -5,6 +5,8 @@ using System.Collections;
 
 public class WashClothes : MonoBehaviour
 {
+    [SerializeField] private AudioClip washSound;
+
     public GameObject[] dirtLayers;
     private SpriteRenderer[] dirtRenderers;
 
@@ -49,6 +51,11 @@ public class WashClothes : MonoBehaviour
                     Vector3 spawnPos = dirtRenderer.transform.position;
                     spawnPos += (Vector3)(Random.insideUnitCircle * 0.2f); // around the blood 
                     SpawnBubbleEffect(spawnPos);
+                    // Play wash sound
+                    if (washSound != null)
+                    {
+                        AudioManager.instance.PlayOneShotEffect(washSound, transform);
+                    }
                 }
             }
 
