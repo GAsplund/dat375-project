@@ -26,6 +26,35 @@ public class Job
         return clothes.Length;
     }
 
+    public void JobDone()
+    {
+        MoneyManager.Add(reward);
+        if(forGang== "The Banditos")
+        {
+            ReputationManager.ChangeReputationL(reward);
+            
+        }
+        else
+        {
+            ReputationManager.ChangeReputationR(reward);
+        }
+    }
+    public void PartlyDone(uint completedItems)
+    {
+        float Completation = completedItems / clothes.Length;
+        MoneyManager.Add((int)Completation * reward);
+        if (forGang == "The Banditos")
+        {
+            ReputationManager.ChangeReputationL((int)Completation * reward);
+
+        }
+        else
+        {
+            ReputationManager.ChangeReputationR((int)Completation * reward);
+
+        }
+    }
+
     public string StoryDescription()
     {
         return noteDescription;
