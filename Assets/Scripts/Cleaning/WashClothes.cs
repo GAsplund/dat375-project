@@ -82,7 +82,7 @@ public class WashClothes : MonoBehaviour
     {
         if (washSounds != null && washSounds.Length > 0)
         {
-            AudioManager.instance.PlayRandomOneShotEffect(washSounds, transform);
+            AudioManager.instance.PlayRandomOneShotEffect(washSounds);
         }
     }
 

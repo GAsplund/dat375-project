@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayWalkingSound()
     {
-        AudioManager.instance.PlayRandomOneShotEffect(walkSounds, transform, 0.5f);
+        AudioManager.instance.PlayRandomOneShotEffect(walkSounds, 0.5f);
     }
 
     private Direction GetDirection(Vector2 movement)

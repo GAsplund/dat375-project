@@ -11,7 +11,7 @@ public class AudioClickable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        AudioManager.instance?.PlayOneShotEffect(mouseDownSound, transform);
+        AudioManager.instance?.PlayOneShotSfx(mouseDownSound);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -21,11 +21,11 @@ public class AudioClickable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        AudioManager.instance?.PlayOneShotEffect(mouseUpSound, transform);
+        AudioManager.instance?.PlayOneShotSfx(mouseUpSound);
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        AudioManager.instance?.PlayOneShotEffect(mouseEnterSound, transform);
+        AudioManager.instance?.PlayOneShotSfx(mouseEnterSound);
     }
 }

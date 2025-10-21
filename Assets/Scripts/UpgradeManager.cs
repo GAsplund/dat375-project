@@ -54,7 +54,7 @@ public class UpgradeManager : MonoBehaviour
             savedStep++;
             if (upgradeSound != null)
             {
-                AudioManager.instance.PlayOneShotEffect(upgradeSound, transform);
+                AudioManager.instance.PlayOneShotSfx(upgradeSound);
             }
             UpdateVisuals();
             CanAffordUpgrades();

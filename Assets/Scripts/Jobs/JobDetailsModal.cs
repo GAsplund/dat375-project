@@ -27,7 +27,7 @@ public class JobDetailsModal : MonoBehaviour
     {
         if (job == null || panel == null) return;
 
-        AudioManager.instance?.PlayOneShotEffect(openSound, transform);
+        AudioManager.instance?.PlayOneShotSfx(openSound);
 
         currentJob = job; // Store reference to current job
         panel.SetActive(true);

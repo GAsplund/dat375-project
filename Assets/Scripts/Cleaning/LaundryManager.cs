@@ -127,7 +127,7 @@ public class LaundryManager : MonoBehaviour
 
         if (jobFinishSound != null)
         {
-            AudioManager.instance.PlayOneShotEffect(jobFinishSound, transform);
+            AudioManager.instance.PlayOneShotSfx(jobFinishSound);
         }
 
         if (itemsRemainingText != null)
