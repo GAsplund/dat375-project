@@ -2,33 +2,51 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private CursorManager cursorManager;
     [SerializeField] private UnityEvent onClick;
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color hoverColor = new Color(0.8f, 0.8f, 0.8f);
+    
+    private SpriteRenderer spriteRenderer;
+    private Image image;
 
-    void Start()
+    private void Awake()
     {
-        cursorManager = FindObjectOfType<CursorManager>();
-        if (cursorManager == null)
-        {
-            Debug.LogWarning("CursorManager not found in the scene. Cursor changes will be ignored.");
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
+        
+        // Store the original color
+        if (spriteRenderer != null)
+            normalColor = spriteRenderer.color;
+        else if (image != null)
+            normalColor = image.color;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        cursorManager?.SetHovering(true);
+        CursorManager.SetHovering(true);
+        SetColor(hoverColor);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        cursorManager?.SetHovering(false);
+        CursorManager.SetHovering(false);
+        SetColor(normalColor);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         onClick?.Invoke();
+    }
+
+    private void SetColor(Color color)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.color = color;
+        else if (image != null)
+            image.color = color;
     }
 }
