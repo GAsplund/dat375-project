@@ -143,6 +143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e74a6247ce7fe94386b4435a0b76d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  washSounds:
+  - {fileID: 8300000, guid: b3f5051e9d97c4a4897262a906a44943, type: 3}
+  - {fileID: 8300000, guid: 04182367e3bd5e2419e08e3918d37667, type: 3}
+  - {fileID: 8300000, guid: 9198d9d9a8da04a48a524e379ddad196, type: 3}
+  - {fileID: 8300000, guid: 16c7aa32e6e830e498ae1b39dbb94eae, type: 3}
   dirtLayers:
   - {fileID: 2009961302858793460}
   - {fileID: 4791697287134666188}
@@ -292,6 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e74a6247ce7fe94386b4435a0b76d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  washSounds:
+  - {fileID: 8300000, guid: b3f5051e9d97c4a4897262a906a44943, type: 3}
+  - {fileID: 8300000, guid: 04182367e3bd5e2419e08e3918d37667, type: 3}
+  - {fileID: 8300000, guid: 9198d9d9a8da04a48a524e379ddad196, type: 3}
+  - {fileID: 8300000, guid: 16c7aa32e6e830e498ae1b39dbb94eae, type: 3}
   dirtLayers:
   - {fileID: 2009961302858793460}
   - {fileID: 4791697287134666188}

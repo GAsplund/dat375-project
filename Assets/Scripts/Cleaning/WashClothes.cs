@@ -5,7 +5,7 @@ using System.Collections;
 
 public class WashClothes : MonoBehaviour
 {
-    [SerializeField] private AudioClip washSound;
+    [SerializeField] private AudioClip[] washSounds;
 
     public GameObject[] dirtLayers;
     private SpriteRenderer[] dirtRenderers;
@@ -52,9 +52,9 @@ public class WashClothes : MonoBehaviour
                     spawnPos += (Vector3)(Random.insideUnitCircle * 0.2f); // around the blood 
                     SpawnBubbleEffect(spawnPos);
                     // Play wash sound
-                    if (washSound != null)
+                    if (!IsInvoking(nameof(PlayCleaningSound)))
                     {
-                        AudioManager.instance.PlayOneShotEffect(washSound, transform);
+                        InvokeRepeating(nameof(PlayCleaningSound), 0f, 1.8f);
                     }
                 }
             }
@@ -76,6 +76,14 @@ public class WashClothes : MonoBehaviour
 
         // Destroy bubbles
         Destroy(bubbleEffect.gameObject, bubbleLifetime);
+    }
+
+    void PlayCleaningSound()
+    {
+        if (washSounds != null && washSounds.Length > 0)
+        {
+            AudioManager.instance.PlayRandomOneShotEffect(washSounds, transform);
+        }
     }
 
     bool AllDirtClean()
