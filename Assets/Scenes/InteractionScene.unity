@@ -9871,6 +9871,8 @@ MonoBehaviour:
   shotTrigger: Shot
   shotStateLayer: 0
   shotStateName: Shot
+  shotSound: {fileID: 8300000, guid: 748ddda6bbad57241a0fd05fa47d9342, type: 3}
+  shotSoundDelay: 1.55
 --- !u!1 &1741497560
 GameObject:
   m_ObjectHideFlags: 0

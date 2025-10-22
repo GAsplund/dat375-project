@@ -23,6 +23,10 @@ public class WindowAnimator : MonoBehaviour
     public int shotStateLayer = 0;
     [Tooltip("Animator state name for the shot animation (used to prevent random triggers while shot plays)")]
     public string shotStateName = "Shot";
+    [Tooltip("Sound to play when the shot animation is triggered")]
+    public AudioClip shotSound;
+    [Tooltip("Delay in seconds before playing the shot sound after the shot is triggered")]
+    public float shotSoundDelay = 0f;
 
     Animator animator;
     Coroutine runningRoutine;
@@ -106,6 +110,7 @@ public class WindowAnimator : MonoBehaviour
         animator.SetTrigger(walkByParam);
     }
 
+    [ContextMenu("Trigger Shot (Context)")]
     public void TriggerShotOnce()
     {
         if (animator == null)
@@ -114,5 +119,23 @@ public class WindowAnimator : MonoBehaviour
             return;
         }
         animator.SetTrigger(shotTrigger);
+
+        // Play configured shot sound after optional delay using AudioManager
+        if (shotSound != null && AudioManager.instance != null)
+        {
+            // Start a coroutine to play the shot sound after the configured delay.
+            StartCoroutine(PlayShotWithDelay(shotSoundDelay));
+        }
+    }
+
+    IEnumerator PlayShotWithDelay(float delay)
+    {
+        if (delay > 0f)
+            yield return new WaitForSeconds(delay);
+
+        if (shotSound == null) yield break;
+        if (AudioManager.instance == null) yield break;
+
+        AudioManager.instance.PlayOneShotSfx(shotSound);
     }
 }
