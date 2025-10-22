@@ -136,6 +136,6 @@ public class WindowAnimator : MonoBehaviour
         if (shotSound == null) yield break;
         if (AudioManager.instance == null) yield break;
 
-        AudioManager.instance.PlayOneShotSfx(shotSound);
+        AudioManager.instance.PlayOneShotEffect(shotSound);
     }
 }
