@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using TMPro;
-using System.Collections;
 
 public class WashClothes : MonoBehaviour
 {
     [SerializeField] private AudioClip[] washSounds;
+    [SerializeField] private float soundCooldown = 1.8f;
 
     public GameObject[] dirtLayers;
     private SpriteRenderer[] dirtRenderers;
@@ -51,11 +49,8 @@ public class WashClothes : MonoBehaviour
                     Vector3 spawnPos = dirtRenderer.transform.position;
                     spawnPos += (Vector3)(Random.insideUnitCircle * 0.2f); // around the blood 
                     SpawnBubbleEffect(spawnPos);
-                    // Play wash sound
-                    if (!IsInvoking(nameof(PlayCleaningSound)))
-                    {
-                        InvokeRepeating(nameof(PlayCleaningSound), 0f, 1.8f);
-                    }
+
+                    PlayCleaningSound();
                 }
             }
 
@@ -80,10 +75,10 @@ public class WashClothes : MonoBehaviour
 
     void PlayCleaningSound()
     {
-        if (washSounds != null && washSounds.Length > 0)
-        {
-            AudioManager.instance.PlayRandomOneShotEffect(washSounds);
-        }
+        if (washSounds == null || washSounds.Length == 0) return;
+        if (AudioManager.instance == null) return;
+
+        AudioManager.instance.PlayRandomOneShotEffectDebounced(washSounds, "cleaning", soundCooldown);
     }
 
     bool AllDirtClean()
@@ -97,4 +92,3 @@ public class WashClothes : MonoBehaviour
     }
 
 }
-
