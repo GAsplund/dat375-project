@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ using UnityEngine.UI;
 public class ReputationManager : MonoBehaviour
 {
     private static ReputationManager Instance;
+
+    // Event fired whenever a heart is lost. Parameter: string side ("L" or "R").
+    public static event Action<string> OnHeartLost;
 
     public int MaxReputation;
 
@@ -106,11 +110,13 @@ public class ReputationManager : MonoBehaviour
         {
             Lhearts--;
             reputationL = 0;
+            OnHeartLost?.Invoke("L");
         }
         if (reputationR >= MaxReputation)
         {
             Rhearts--;
             reputationR = 0;
+            OnHeartLost?.Invoke("R");
         }
 
         Debug.Log("Hearts Left: L=" + Lhearts + ", R=" + Rhearts);

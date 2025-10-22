@@ -9865,9 +9865,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkByParam: RandomWalkBy
-  minInterval: 5
-  maxInterval: 10
+  minInterval: 10
+  maxInterval: 30
   enableRandom: 1
+  shotTrigger: Shot
+  shotStateLayer: 0
+  shotStateName: Shot
 --- !u!1 &1741497560
 GameObject:
   m_ObjectHideFlags: 0
