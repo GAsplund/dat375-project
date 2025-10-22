@@ -9755,6 +9755,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1707003072}
   - component: {fileID: 1707003071}
+  - component: {fileID: 1707003073}
+  - component: {fileID: 1707003074}
   m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
@@ -9803,7 +9805,7 @@ SpriteRenderer:
   m_SortingLayerID: 770350249
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 44d87017a8596064887831582a2c57e8, type: 3}
+  m_Sprite: {fileID: 57629800, guid: 161df4243a83ff6479a4fdf4c202c348, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9829,6 +9831,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 981284855}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1707003073
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707003070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 49a85e8ca7380ed4c85c781104f7faf0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1707003074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707003070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beae9bf6fa5cf794284110250ada4a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkByParam: RandomWalkBy
+  minInterval: 5
+  maxInterval: 10
+  enableRandom: 1
 --- !u!1 &1741497560
 GameObject:
   m_ObjectHideFlags: 0
