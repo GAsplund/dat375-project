@@ -32,7 +32,7 @@ public class BusinessUpgradeInteractable : MonoBehaviour
         //  Check if we have reached the maximum level
         if (manager.CurrentStep >= manager.MaxStep)
         {
-            Debug.Log("Max Level reached!");
+            Debug.Log("Max level reached!");
             return;
         }
 
@@ -87,8 +87,8 @@ public class BusinessUpgradeInteractable : MonoBehaviour
         interactText.enabled = true;
 
         if (manager.CurrentStep >= manager.MaxStep)
-            interactText.text = "Max Level";
+            interactText.text = "Max level reached";
         else
-            interactText.text = $"Press {interactKey} to Upgrade ({manager.GetUpgradeCost()}$)";
+            interactText.text = $"[{interactKey}] Upgrade (${manager.GetUpgradeCost()})";
     }
 }

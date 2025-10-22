@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReputationBar : MonoBehaviour
 {
-    [SerializeField] private List<SpriteRenderer> Lhearts = new List<SpriteRenderer>();
-    [SerializeField] private List<SpriteRenderer> Rhearts = new List<SpriteRenderer>();
+    [SerializeField] private List<MonoBehaviour> Lhearts = new List<MonoBehaviour>();
+    [SerializeField] private List<MonoBehaviour> Rhearts = new List<MonoBehaviour>();
 
-    public List<SpriteRenderer> GetLeftHearts()
+    public List<MonoBehaviour> GetLeftHearts()
     {
         return Lhearts;
     }
 
-    public List<SpriteRenderer> GetRightHearts()
+    public List<MonoBehaviour> GetRightHearts()
     {
         return Rhearts;
     }
