@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ReputationManager : MonoBehaviour
 {
@@ -11,13 +12,13 @@ public class ReputationManager : MonoBehaviour
 
     public int MaxReputation;
 
-    public SpriteRenderer Lheart1;
-    public SpriteRenderer Lheart2;
-    public SpriteRenderer Lheart3;
+    private MonoBehaviour Lheart1;
+    private MonoBehaviour Lheart2;
+    private MonoBehaviour Lheart3;
 
-    public SpriteRenderer Rheart1;
-    public SpriteRenderer Rheart2;
-    public SpriteRenderer Rheart3;
+    private MonoBehaviour Rheart1;
+    private MonoBehaviour Rheart2;
+    private MonoBehaviour Rheart3;
 
     public string[] BarShouldActive;
 
