@@ -21,6 +21,7 @@ public class LaundryManager : MonoBehaviour
     [SerializeField] private GameObject defaultPrefab;
     [SerializeField] private ClothingPrefab[] clothingPrefabs;
     [SerializeField] private AudioClip jobFinishSound;
+    [SerializeField] private AudioClip laundryItemSwitchedSound;
 
     private Dictionary<ClothingType, GameObject> prefabMap;
     private ClothingType[] clothesToClean;
@@ -65,12 +66,17 @@ public class LaundryManager : MonoBehaviour
         // Advance to next item from the job
         currentItem++;
 
-       
-
         if (currentItem >= totalItemsToClean)
         {
             StartCoroutine(OnJobDone());
             return;
+        }
+        else
+        {
+            if (laundryItemSwitchedSound != null)
+            {
+                AudioManager.instance.PlayOneShotSfx(laundryItemSwitchedSound);
+            }
         }
 
         // Remove existing t-shirt
