@@ -14,9 +14,7 @@ public class MoneyManager : MonoBehaviour
     public static event Action<int> OnValueChange;
     private static MoneyManager Instance;
 
-    private int currentMoney = 0;
-
-    public int CurrentMoney => currentMoney;
+    public int CurrentMoney { get; private set; }
 
     private void Awake()
     {
@@ -36,7 +34,7 @@ public class MoneyManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        OnValueChange?.Invoke(currentMoney);
+        OnValueChange?.Invoke(CurrentMoney);
     }
 
     private void OnDestroy()
@@ -72,20 +70,20 @@ public class MoneyManager : MonoBehaviour
             throw new NotSupportedException("MoneyManager instance does not exist in the scene. Cannot get current money.");
         }
 
-        return Instance.currentMoney;
+        return Instance.CurrentMoney;
     }
 
     /** Instance Methods **/
 
     private void AddMoney(int amount)
     {
-        currentMoney += amount;
-        OnValueChange?.Invoke(currentMoney);
+        CurrentMoney += amount;
+        OnValueChange?.Invoke(CurrentMoney);
     }
 
     private void SubtractMoney(int amount)
     {
-        currentMoney -= amount;
-        OnValueChange?.Invoke(currentMoney);
+        CurrentMoney -= amount;
+        OnValueChange?.Invoke(CurrentMoney);
     }
 }
