@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d38908340652e47a6730f80e81ce79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameScene: {fileID: 102900000, guid: 38bbcb81a09cf66499996c1d67370dbc, type: 3}
+  SceneToChange: InteractionScene
 --- !u!114 &958285949
 MonoBehaviour:
   m_ObjectHideFlags: 0
