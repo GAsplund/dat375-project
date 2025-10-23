@@ -23,6 +23,16 @@ public class JobDetailsModal : MonoBehaviour
         if (panel != null) panel.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        FindObjectOfType<EscapeHandler>()?.RegisterResponder(HandleEscape);
+    }
+
+    private void OnDisable()
+    {
+        FindObjectOfType<EscapeHandler>()?.UnregisterResponder(HandleEscape);
+    }
+
     public void Show(Job job)
     {
         if (job == null || panel == null) return;
@@ -39,6 +49,7 @@ public class JobDetailsModal : MonoBehaviour
     public void Hide()
     {
         if (panel != null) panel.SetActive(false);
+        currentJob = null;
         CursorManager.SetHovering(false); // Work around for the fact that the button disappears before OnPointerExit is called
     }
 
@@ -85,5 +96,16 @@ public class JobDetailsModal : MonoBehaviour
 
         currentJob = null;
         Hide();
+    }
+
+    private bool HandleEscape()
+    {
+        if (panel != null && panel.activeSelf)
+        {
+            Hide();
+            return true;
+        }
+
+        return false;
     }
 }
