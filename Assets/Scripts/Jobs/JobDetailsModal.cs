@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class JobDetailsModal : MonoBehaviour
 {
     public static JobDetailsModal Instance { get; private set; }
 
     [SerializeField] private GameObject panel; // panel root to enable/disable
+    [SerializeField] private Button backdropButton;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI detailsText;
     [SerializeField] private TextMeshProUGUI storyText;
@@ -21,6 +23,7 @@ public class JobDetailsModal : MonoBehaviour
         else Destroy(gameObject);
 
         if (panel != null) panel.SetActive(false);
+        if (backdropButton != null) backdropButton.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -44,11 +47,13 @@ public class JobDetailsModal : MonoBehaviour
         titleText.text = $"Job for {job.forGang}";
         detailsText.text = $"Reward: {job.reward} gold\nItems: {job.NumberOfClothes()}";
         storyText.text = job.noteDescription;
+        backdropButton.gameObject.SetActive(true);
     }
 
     public void Hide()
     {
         if (panel != null) panel.SetActive(false);
+        backdropButton.gameObject.SetActive(false);
         currentJob = null;
         CursorManager.SetHovering(false); // Work around for the fact that the button disappears before OnPointerExit is called
     }
