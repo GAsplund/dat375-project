@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] AudioSource effectSource;
     [SerializeField] AudioSource sfxSource;
+
+    private Dictionary<string, float> lastPlayTimes = new Dictionary<string, float>();
 
     private void Awake()
     {
@@ -51,5 +53,19 @@ public class AudioManager : MonoBehaviour
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         if (clip == null) return;
         PlayOneShotSfx(clip, volume);
+    }
+
+    public void PlayRandomOneShotEffectDebounced(AudioClip[] clips, string key, float cooldown = 0.5f, float volume = 1f)
+    {
+        if (clips == null || clips.Length == 0 || effectSource == null) return;
+        if (string.IsNullOrEmpty(key)) key = "default";
+
+        float last;
+        lastPlayTimes.TryGetValue(key, out last);
+
+        if (Time.time - last < cooldown) return;
+
+        lastPlayTimes[key] = Time.time;
+        PlayRandomOneShotEffect(clips, volume);
     }
 }
