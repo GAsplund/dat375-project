@@ -104,7 +104,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void CanAffordUpgrades()
     {
-        if (MoneyManager.getCurrentMoney() > GetUpgradeCost())
+        if (MoneyManager.getCurrentMoney() > GetUpgradeCost() && savedStep < MaxStep)
         {
             FindObjectOfType<CashRegisterController>()?.CanPay();
         }
