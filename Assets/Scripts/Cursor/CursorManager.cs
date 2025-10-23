@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CursorManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D clickCursorTexture;
     [SerializeField] private Vector2 clickHotSpot = Vector2.zero;
 
+    public string SceneToHide;
+
     private bool isHovering = false;
 
     private enum CursorState { Default, Hover, Clicked }
@@ -31,8 +34,20 @@ public class CursorManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name==SceneToHide)
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible=true;
+        }
+    }
     void Start()
     {
         ApplyState(CursorState.Default);

@@ -1326,6 +1326,7 @@ MonoBehaviour:
   hoverHotSpot: {x: 0, y: 0}
   clickCursorTexture: {fileID: 2800000, guid: dc5393107a06fc74abd2d35b09dd73e1, type: 3}
   clickHotSpot: {x: 0, y: 0}
+  SceneToHide: InteractionScene
 --- !u!4 &1914412802
 Transform:
   m_ObjectHideFlags: 0
