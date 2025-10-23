@@ -29,10 +29,9 @@ public class Job
     public void JobDone()
     {
         MoneyManager.Add(reward);
-        if(forGang== "The Banditos")
+        if (forGang == "The Banditos")
         {
             ReputationManager.ChangeReputationL(reward);
-            
         }
         else
         {
@@ -55,8 +54,4 @@ public class Job
         }
     }
 
-    public string StoryDescription()
-    {
-        return noteDescription;
-    }
 }

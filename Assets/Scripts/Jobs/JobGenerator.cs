@@ -20,7 +20,8 @@ public class JobGenerator : MonoBehaviour
     [SerializeField] private int maxQuantity = 5;
 
     [Tooltip("Note descriptions to randomly assign to jobs."), SerializeAs("Note Descriptions")]
-    [SerializeField] private List<string> noteDescriptions = new List<string>
+    [SerializeField]
+    private List<string> noteDescriptions = new List<string>
     {
         "Red shirts from last night's skirmish need cleaning. Wash out the iron scent before dawn. Payment is swift as always.",
         "Coats torn in the alley brawl need cleaning. Scrub them clean without questions. We're building strength and your silence helps.",
@@ -226,6 +227,40 @@ public class JobGenerator : MonoBehaviour
         }
 
         JobManager.StoreGeneratedJobs(generatedNotesData);
+    }
+
+    /// <summary>
+    /// Removes an existing job from the board and updates the stored job list.
+    /// </summary>
+    public void RemoveJob(Job job)
+    {
+        if (job == null)
+        {
+            return;
+        }
+
+        // We have to go backwards to safely remove while iterating
+        for (int i = generatedNotesData.Count - 1; i >= 0; i--)
+        {
+            if (generatedNotesData[i].job == job)
+            {
+                occupiedPositions.Remove(generatedNotesData[i].position);
+                generatedNotesData.RemoveAt(i);
+                break;
+            }
+        }
+
+        foreach (var note in FindObjectsOfType<JobNote>())
+        {
+            if (note != null && note.job == job)
+            {
+                Destroy(note.gameObject);
+                break;
+            }
+        }
+
+        JobManager.StoreGeneratedJobs(generatedNotesData);
+        ReplenishIfNeeded();
     }
 
     private Vector3? GetNonOverlappingPosition()

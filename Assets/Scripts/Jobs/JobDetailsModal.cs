@@ -58,4 +58,32 @@ public class JobDetailsModal : MonoBehaviour
         JobManager.SetJob(currentJob);
         SceneManager.LoadScene(sceneToLoad);
     }
+
+    /// <summary>
+    /// Call this method when the Decline button is clicked.
+    /// It declines the current job and hides the modal.
+    /// </summary>
+    public void Decline()
+    {
+        if (currentJob == null)
+        {
+            Debug.LogWarning("No job selected to decline!");
+            Hide();
+            return;
+        }
+
+        var generator = FindObjectOfType<JobGenerator>();
+        if (generator == null)
+        {
+            Debug.LogWarning("JobGenerator not found in the scene. Cannot decline job.");
+            Hide();
+            currentJob = null;
+            return;
+        }
+
+        generator.RemoveJob(currentJob);
+
+        currentJob = null;
+        Hide();
+    }
 }
