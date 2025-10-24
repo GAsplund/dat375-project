@@ -215,4 +215,9 @@ public class ReputationManager : MonoBehaviour
         RSlider = reputationBar.GetRightReputationBar();
 
     }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }
