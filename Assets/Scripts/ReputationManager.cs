@@ -14,7 +14,8 @@ public class ReputationManager : MonoBehaviour
     // Event fired whenever a heart is lost. Parameter: string side ("L" or "R").
     public static event Action<string> OnHeartLost;
 
-    public int MaxReputation;
+    [SerializeField] private string GameOverScene = "GameOverScene";
+    [SerializeField] private int MaxReputation = 100;
 
     private MonoBehaviour Lheart1;
     private MonoBehaviour Lheart2;
@@ -133,7 +134,7 @@ public class ReputationManager : MonoBehaviour
         switch (Lhearts)
         {
             case 0:
-                Debug.Log("game ends since Lhearts ritches 0");
+                SceneManager.LoadScene(GameOverScene);
                 break;
             case 1:
                 Lheart1.enabled = true;
@@ -155,7 +156,7 @@ public class ReputationManager : MonoBehaviour
         switch (Rhearts)
         {
             case 0:
-                Debug.Log("game ends since Rhearts ritches 0");
+                SceneManager.LoadScene(GameOverScene);
                 break;
             case 1:
                 Rheart1.enabled = true;
