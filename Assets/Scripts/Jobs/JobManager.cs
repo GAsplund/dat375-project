@@ -128,7 +128,7 @@ public class JobManager : MonoBehaviour
     /// <summary>
     /// Static method to get jobs that have already been generated and stored.
     /// </summary>
-    public static System.Collections.Generic.List<JobNoteData> GetGeneratedJobs()
+    public static List<JobNoteData> GetGeneratedJobs()
     {
         if (Instance == null)
         {
@@ -142,7 +142,7 @@ public class JobManager : MonoBehaviour
     /// Static method to store generated job notes.
     /// </summary>
     /// <param name="jobs">The job notes to store</param>
-    public static void StoreGeneratedJobs(System.Collections.Generic.List<JobNoteData> jobs)
+    public static void StoreGeneratedJobs(List<JobNoteData> jobs)
     {
         if (Instance == null)
         {
@@ -177,9 +177,9 @@ public class JobManager : MonoBehaviour
     /// Instance method to store generated job notes.
     /// </summary>
     /// <param name="jobs">The job notes to store</param>
-    private void SetGeneratedJobs(System.Collections.Generic.List<JobNoteData> jobs)
+    private void SetGeneratedJobs(List<JobNoteData> jobs)
     {
-        jobNotesData = jobs ?? new System.Collections.Generic.List<JobNoteData>();
+        jobNotesData = jobs ?? new List<JobNoteData>();
         Debug.Log($"JobManager: Stored {jobNotesData.Count} generated jobs");
     }
 }

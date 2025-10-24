@@ -9,7 +9,9 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] private UnityEvent onClick;
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color hoverColor = new Color(0.8f, 0.8f, 0.8f);
-    
+    [Tooltip("If true, resets to normal color on click. Helpful if the button hides itself on click.")]
+    [SerializeField] private bool resetColorOnClick = false;
+
     private SpriteRenderer spriteRenderer;
     private Image image;
 
@@ -17,7 +19,7 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         image = GetComponent<Image>();
-        
+
         // Store the original color
         if (spriteRenderer != null)
             normalColor = spriteRenderer.color;
@@ -40,6 +42,10 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerClick(PointerEventData eventData)
     {
         onClick?.Invoke();
+        if (resetColorOnClick)
+        {
+            SetColor(normalColor);
+        }
     }
 
     private void SetColor(Color color)
