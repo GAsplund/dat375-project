@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerButton : MonoBehaviour, IPointerClickHandler
 {
-    public SceneAsset GameScene;
+   
+    public string SceneToChange;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        SceneManager.LoadScene(GameScene.name);
+      
+       SceneManager.LoadScene(SceneToChange);
     }
 }
