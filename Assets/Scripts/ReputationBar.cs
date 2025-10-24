@@ -7,6 +7,8 @@ public class ReputationBar : MonoBehaviour
 {
     [SerializeField] private List<MonoBehaviour> Lhearts = new List<MonoBehaviour>();
     [SerializeField] private List<MonoBehaviour> Rhearts = new List<MonoBehaviour>();
+    [SerializeField] private Slider reputationBarL;
+    [SerializeField] private Slider reputationBarR;
 
     public List<MonoBehaviour> GetLeftHearts()
     {
@@ -16,5 +18,15 @@ public class ReputationBar : MonoBehaviour
     public List<MonoBehaviour> GetRightHearts()
     {
         return Rhearts;
+    }
+
+    public Slider GetLeftReputationBar()
+    {
+        return reputationBarL;
+    }
+
+    public Slider GetRightReputationBar()
+    {
+        return reputationBarR;
     }
 }

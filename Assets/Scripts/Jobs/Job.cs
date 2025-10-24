@@ -29,7 +29,7 @@ public class Job
     public void JobDone()
     {
         MoneyManager.Add(reward);
-        if (forGang == "The Banditos")
+        if (forGang == "The Cowboy Hats")
         {
             ReputationManager.ChangeReputationL(reward);
         }
@@ -42,7 +42,7 @@ public class Job
     {
         float Completation = completedItems / clothes.Length;
         MoneyManager.Add((int)Completation * reward);
-        if (forGang == "The Banditos")
+        if (forGang == "The Cowboy Hats")
         {
             ReputationManager.ChangeReputationL((int)Completation * reward);
 

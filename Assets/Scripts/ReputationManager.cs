@@ -14,15 +14,18 @@ public class ReputationManager : MonoBehaviour
     // Event fired whenever a heart is lost. Parameter: string side ("L" or "R").
     public static event Action<string> OnHeartLost;
 
-    public int MaxReputation;
+    [SerializeField] private string GameOverScene = "GameOverScene";
+    [SerializeField] private int MaxReputation = 100;
 
     private MonoBehaviour Lheart1;
     private MonoBehaviour Lheart2;
     private MonoBehaviour Lheart3;
+    private Slider LSlider;
 
     private MonoBehaviour Rheart1;
     private MonoBehaviour Rheart2;
     private MonoBehaviour Rheart3;
+    private Slider RSlider;
 
     public string[] BarShouldActive;
 
@@ -87,9 +90,11 @@ public class ReputationManager : MonoBehaviour
         if (!BarShouldActive.Contains(currentScene))
         {
             reputationLBuffer += rptn;
+            reputationRBuffer -= rptn;
             return;
         }
         reputationL += rptn;
+        reputationR -= rptn;
         OnReputationChanged();
     }
     private void changeR(int rptn)
@@ -97,9 +102,11 @@ public class ReputationManager : MonoBehaviour
         if (!BarShouldActive.Contains(currentScene))
         {
             reputationRBuffer += rptn;
+            reputationLBuffer -= rptn;
             return;
         }
         reputationR += rptn;
+        reputationL -= rptn;
         OnReputationChanged();
     }
 
@@ -119,12 +126,15 @@ public class ReputationManager : MonoBehaviour
             OnHeartLost?.Invoke("R");
         }
 
+        LSlider.value = (float)reputationL / MaxReputation;
+        RSlider.value = (float)reputationR / MaxReputation;
+
         Debug.Log("Hearts Left: L=" + Lhearts + ", R=" + Rhearts);
 
         switch (Lhearts)
         {
             case 0:
-                Debug.Log("game ends since Lhearts ritches 0");
+                SceneManager.LoadScene(GameOverScene);
                 break;
             case 1:
                 Lheart1.enabled = true;
@@ -146,7 +156,7 @@ public class ReputationManager : MonoBehaviour
         switch (Rhearts)
         {
             case 0:
-                Debug.Log("game ends since Rhearts ritches 0");
+                SceneManager.LoadScene(GameOverScene);
                 break;
             case 1:
                 Rheart1.enabled = true;
@@ -185,6 +195,7 @@ public class ReputationManager : MonoBehaviour
         {
             throw new System.NotSupportedException("Not enough left hearts found in ReputationBar. At least 3 are required.");
         }
+        LSlider = reputationBar.GetLeftReputationBar();
 
         var rHearts = reputationBar.GetRightHearts();
         if (rHearts.Count >= 3)
@@ -201,6 +212,12 @@ public class ReputationManager : MonoBehaviour
         {
             throw new System.NotSupportedException("Not enough right hearts found in ReputationBar. At least 3 are required.");
         }
+        RSlider = reputationBar.GetRightReputationBar();
 
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
