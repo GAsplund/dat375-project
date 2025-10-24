@@ -5679,7 +5679,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 51
   m_SortAtRoot: 0
 --- !u!1 &1001968711
 GameObject:
@@ -8646,7 +8646,7 @@ Transform:
   m_GameObject: {fileID: 1509017521}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.91, y: 2.103241, z: 0}
+  m_LocalPosition: {x: 2.46, y: 2.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10875,6 +10875,7 @@ GameObject:
   - component: {fileID: 1759997887}
   - component: {fileID: 1759997889}
   - component: {fileID: 1759997890}
+  - component: {fileID: 1759997891}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -10988,6 +10989,18 @@ MonoBehaviour:
   - {fileID: 1279990199}
   - {fileID: 1297422474}
   - {fileID: 174252236}
+--- !u!210 &1759997891
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759997886}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 50
+  m_SortAtRoot: 0
 --- !u!1 &1763783623
 GameObject:
   m_ObjectHideFlags: 0
@@ -13685,6 +13698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1929254071}
+  - component: {fileID: 1929254072}
   m_Layer: 0
   m_Name: Interactables
   m_TagString: Untagged
@@ -13710,6 +13724,18 @@ Transform:
   - {fileID: 300933926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1929254072
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929254070}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 51
+  m_SortAtRoot: 0
 --- !u!1 &1958209515
 GameObject:
   m_ObjectHideFlags: 0
