@@ -10977,8 +10977,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeSound: {fileID: 8300000, guid: 3bec83fcf591e4545928e3dcdf7f913c, type: 3}
-  baseUpgradeCost: 5
-  costMultiplier: 2
+  baseUpgradeCost: 15
+  costMultiplier: 3
   floors:
   - {fileID: 1887640933}
   - {fileID: 1514695891}

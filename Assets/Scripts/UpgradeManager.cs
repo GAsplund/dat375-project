@@ -9,7 +9,7 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager Instance;
 
 
-    public int baseUpgradeCost = 5;
+    public int baseUpgradeCost = 20;
 
     public int costMultiplier = 2;
 
